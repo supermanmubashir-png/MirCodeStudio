@@ -6,7 +6,6 @@
     <title>MIR Code Studio</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#030712">
-<link rel="manifest" href="manifest.json">
     <style>
         :root {
             --bg-color: #030712;
@@ -413,7 +412,7 @@
     <div class="toast" id="toast">Action completed successfully</div>
 
     <script>
-        // Default Apps Data with corrected Windows12 URL
+        // Default Apps Data including Speedometer
         const defaultApps = [
             {
                 id: 'quraan-pro',
@@ -440,6 +439,15 @@
                 icon: '💻',
                 description: 'Futuristic desktop OS web interface',
                 category: 'system',
+                favorite: false
+            },
+            {
+                id: 'speedometer',
+                title: 'SPEEDOMETER',
+                url: 'https://supermanmubashir-png.github.io/Speedometer/',
+                icon: '🏎️',
+                description: 'Real-time speed and travel tracking tool',
+                category: 'productivity',
                 favorite: false
             }
         ];
@@ -575,11 +583,6 @@
                 navigator.serviceWorker.register('./sw.js').catch(() => {});
             });
         }
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(() => {});
-    });
-}
 
         // Initial render
         renderApps();
