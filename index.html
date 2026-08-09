@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIR Code Studio</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#030712">
+<link rel="manifest" href="manifest.json">
+    <style>
+        :root {
+            --bg-color: #030712;
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --card-hover: rgba(31, 41, 55, 0.85);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-glow: rgba(56, 189, 248, 0.2);
+            --accent-color: #38bdf8;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-hover: rgba(255, 255, 255, 1);
+            --border-color: rgba(0, 0, 0, 0.08);
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --accent-glow: rgba(14, 165, 233, 0.15);
+            --accent-color: #0ea5e9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 60%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Header & Navigation */
+        header {
+            padding: 2.5rem 1.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.25rem;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .brand-logo {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #38bdf8, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .icon-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1.1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .icon-btn:hover {
+            background: var(--card-hover);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Search & Filter Bar */
+        .controls-bar {
+            display: flex;
+            gap: 0.75rem;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.6rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            outline: none;
+            backdrop-filter: blur(10px);
+            transition: all 0.2s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .category-filter {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .filter-chip {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            white-space: nowrap;
+            backdrop-filter: blur(10px);
+            transition: all 0.2s ease;
+        }
+
+        .filter-chip.active, .filter-chip:hover {
+            background: var(--accent-color);
+            color: #ffffff;
+            border-color: transparent;
+        }
+
+        /* Main Grid */
+        main {
+            flex: 1;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 1rem 1.5rem 3rem;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.25rem;
+        }
+
+        /* App Card */
+        .pwa-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .pwa-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, var(--accent-glow), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .pwa-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-color);
+            background: var(--card-hover);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .pwa-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .icon-wrapper {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            transition: transform 0.3s ease;
+        }
+
+        .pwa-card:hover .icon-wrapper {
+            transform: scale(1.05);
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .action-icon-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 5px;
+            font-size: 1rem;
+            border-radius: 8px;
+            transition: color 0.2s, background 0.2s;
+        }
+
+        .action-icon-btn:hover {
+            color: var(--accent-color);
+            background: var(--border-color);
+        }
+
+        .action-icon-btn.favorite.active {
+            color: #ef4444;
+        }
+
+        .label {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.3px;
+        }
+
+        .description {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            margin-bottom: 1.25rem;
+            flex: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.75rem;
+        }
+
+        .badge {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            background: var(--border-color);
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .launch-hint {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .pwa-card:hover .launch-hint {
+            opacity: 1;
+        }
+
+        /* Empty State */
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-state span {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1100;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-top">
+            <div class="brand">
+                <span class="brand-logo">💻</span>
+                <h1>MIR Code Studio</h1>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" id="themeToggle" title="Toggle Theme">🌓</button>
+            </div>
+        </div>
+
+        <div class="controls-bar">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Search your PWAs...">
+            </div>
+            <div class="category-filter" id="categoryFilter">
+                <button class="filter-chip active" data-category="all">All Apps</button>
+                <button class="filter-chip" data-category="favorites">⭐ Favorites</button>
+                <button class="filter-chip" data-category="productivity">Productivity</button>
+                <button class="filter-chip" data-category="system">System OS</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="grid-container" id="appGrid">
+            <!-- Dynamically populated via JavaScript -->
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Action completed successfully</div>
+
+    <script>
+        // Default Apps Data with corrected Windows12 URL
+        const defaultApps = [
+            {
+                id: 'quraan-pro',
+                title: 'QURAAN-PRO',
+                url: 'https://supermanmubashir-png.github.io/Quraan-Pro',
+                icon: '📖',
+                description: 'Digital Quran reading and audio experience',
+                category: 'productivity',
+                favorite: false
+            },
+            {
+                id: 'smart-notes',
+                title: 'SMART NOTES',
+                url: 'https://supermanmubashir-png.github.io/SmartNotes',
+                icon: '📝',
+                description: 'Quick and organized note-taking tool',
+                category: 'productivity',
+                favorite: false
+            },
+            {
+                id: 'windows-12',
+                title: 'WINDOWS12',
+                url: 'https://supermanmubashir-png.github.io/Windows12/',
+                icon: '💻',
+                description: 'Futuristic desktop OS web interface',
+                category: 'system',
+                favorite: false
+            }
+        ];
+
+        // State Management
+        let apps = JSON.parse(localStorage.getItem('mir_code_studio_apps')) || defaultApps;
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        // DOM Elements
+        const appGrid = document.getElementById('appGrid');
+        const searchInput = document.getElementById('searchInput');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const themeToggle = document.getElementById('themeToggle');
+        const toast = document.getElementById('toast');
+
+        // Theme Initializer
+        const savedTheme = localStorage.getItem('mir_code_studio_theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('mir_code_studio_theme', newTheme);
+            showToast(`Switched to ${newTheme} mode`);
+        });
+
+        // Render Apps
+        function renderApps() {
+            appGrid.innerHTML = '';
+
+            let filtered = apps.filter(app => {
+                const matchesSearch = app.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      app.description.toLowerCase().includes(searchQuery.toLowerCase());
+                
+                if (currentFilter === 'favorites') {
+                    return matchesSearch && app.favorite;
+                } else if (currentFilter !== 'all') {
+                    return matchesSearch && app.category === currentFilter;
+                }
+                return matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                appGrid.innerHTML = `
+                    <div class="empty-state">
+                        <span>📭</span>
+                        <p>No applications found</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(app => {
+                const card = document.createElement('a');
+                card.href = app.url;
+                card.target = '_blank';
+                card.className = 'pwa-card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="icon-wrapper">${app.icon}</div>
+                        <div class="card-actions" onclick="event.preventDefault();">
+                            <button class="action-icon-btn favorite ${app.favorite ? 'active' : ''}" onclick="toggleFavorite('${app.id}')" title="Favorite">
+                                ${app.favorite ? '⭐' : '☆'}
+                            </button>
+                            <button class="action-icon-btn" onclick="shareApp('${app.url}', '${app.title}')" title="Share App">
+                                🔗
+                            </button>
+                        </div>
+                    </div>
+                    <div class="label">${app.title}</div>
+                    <div class="description">${app.description}</div>
+                    <div class="card-footer">
+                        <span class="badge">${app.category}</span>
+                        <span class="launch-hint">Launch ↗</span>
+                    </div>
+                `;
+                appGrid.appendChild(card);
+            });
+        }
+
+        // Search Listener
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderApps();
+        });
+
+        // Category Filter Listeners
+        categoryFilter.addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-chip')) {
+                document.querySelectorAll('.filter-chip').forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+                currentFilter = e.target.getAttribute('data-category');
+                renderApps();
+            }
+        });
+
+        // Favorite Functionality
+        window.toggleFavorite = function(id) {
+            apps = apps.map(app => app.id === id ? { ...app, favorite: !app.favorite } : app);
+            saveAndRender();
+            showToast('Updated favorites');
+        };
+
+        // Share Functionality
+        window.shareApp = function(url, title) {
+            if (navigator.share) {
+                navigator.share({ title: title, url: url }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(url);
+                showToast('App link copied to clipboard!');
+            }
+        };
+
+        function saveAndRender() {
+            localStorage.setItem('mir_code_studio_apps', JSON.stringify(apps));
+            renderApps();
+        }
+
+        // Toast Helper
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        // Service Worker Registration for PWA capability
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(() => {});
+            });
+        }
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+    });
+}
+
+        // Initial render
+        renderApps();
+    </script>
+</body>
+</html>
