@@ -632,6 +632,18 @@
         <section id="newsView" class="view-section">
             <div class="news-container">
                 <div class="news-card">
+                    <span class="news-date">13-October-2026 • Tuesday</span>
+                    <h3>📝 Smart Notes Now Powered by UtiliX AI</h3>
+                    <p><strong>Smart Notes</strong> has received a game-changing integration! It is now fully powered by <strong>UtiliX</strong>, bringing intelligent AI summarization, automatic categorization, and smart doubt clarification directly into your note-taking workflow.</p>
+                    <p><strong>What this integration brings:</strong></p>
+                    <ul>
+                        <li>Instant AI text correction, formatting, and smart summarization.</li>
+                        <li>Automated tagging and organization powered by UtiliX.</li>
+                        <li>Moved under the AI tab for quick, centralized ecosystem access.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
                     <span class="news-date">12-October-2026 • Monday</span>
                     <h3>⚡ UtiliX AI Launch & Dedicated AI Tab Integration</h3>
                     <p><strong>UtiliX</strong> has officially launched today as the best and most powerful AI for daily tasks and doubts! Alongside this release, we have introduced a dedicated <strong>AI tab</strong> in MIR Code Studio, housing both UtiliX and AyahAI for lightning-fast access.</p>
@@ -651,7 +663,7 @@
                     <ul>
                         <li><strong>One UI 8.5 Style Navigation:</strong> Enjoy fluid tab-switching between Apps, News, and Settings with a modern floating dock.</li>
                         <li><strong>Expanded Settings Panel:</strong> Over 10+ real configuration toggles for theme glassmorphism, caching, and offline data sync.</li>
-                        <li><strong>Unified Hub Architecture:</strong> Quick-launch shortcuts for UtiliX, AyahAI, Quraan-Pro, SmartNotes, Windows12, Speedometer, and Speedometer+.</li>
+                        <li><strong>Unified Hub Architecture:</strong> Quick-launch shortcuts for UtiliX, AyahAI, SmartNotes, Quraan-Pro, Windows12, Speedometer, and Speedometer+.</li>
                         <li><strong>Performance Enhancements:</strong> Optimized service worker caching and instant local storage state retention.</li>
                     </ul>
                 </div>
@@ -836,7 +848,7 @@
                 <div class="setting-item">
                     <div class="setting-info">
                         <span class="setting-name">Studio Version</span>
-                        <span class="setting-desc">MIR Code Studio PWA v2.9.1 (Stable)</span>
+                        <span class="setting-desc">MIR Code Studio PWA v2.9.2 (Stable)</span>
                     </div>
                     <span style="font-size: 0.85rem; color: var(--accent-color); font-weight: 700;">Up to date</span>
                 </div>
@@ -864,7 +876,7 @@
     <div class="toast" id="toast">Action completed successfully</div>
 
     <script>
-        // Default Apps Data with corrected UtiliX URL
+        // Default Apps Data (Smart Notes moved to AI tab and powered by UtiliX)
         const defaultApps = [
             {
                 id: 'utilix',
@@ -885,20 +897,20 @@
                 favorite: false
             },
             {
+                id: 'smart-notes',
+                title: 'SMART NOTES',
+                url: 'https://supermanmubashir-png.github.io/SmartNotes',
+                icon: '📝',
+                description: 'Quick and organized note-taking tool powered by UtiliX AI',
+                category: 'ai',
+                favorite: false
+            },
+            {
                 id: 'quraan-pro',
                 title: 'QURAAN-PRO',
                 url: 'https://supermanmubashir-png.github.io/Quraan-Pro',
                 icon: '📖',
                 description: 'Digital Quran reading and audio experience',
-                category: 'productivity',
-                favorite: false
-            },
-            {
-                id: 'smart-notes',
-                title: 'SMART NOTES',
-                url: 'https://supermanmubashir-png.github.io/SmartNotes',
-                icon: '📝',
-                description: 'Quick and organized note-taking tool',
                 category: 'productivity',
                 favorite: false
             },
