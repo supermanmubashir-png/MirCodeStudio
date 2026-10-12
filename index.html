@@ -49,6 +49,7 @@
             display: flex;
             flex-direction: column;
             transition: background-color 0.3s ease;
+            padding-bottom: 90px;
         }
 
         /* Header & Navigation */
@@ -185,13 +186,21 @@
             border-color: transparent;
         }
 
-        /* Main Grid */
+        /* Views / Tabs Container */
         main {
             flex: 1;
             max-width: 900px;
             width: 100%;
             margin: 0 auto;
             padding: 1rem 1.5rem 3rem;
+        }
+
+        .view-section {
+            display: none;
+        }
+
+        .view-section.active {
+            display: block;
         }
 
         .grid-container {
@@ -337,6 +346,214 @@
             opacity: 1;
         }
 
+        /* News Tab Styling */
+        .news-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .news-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.75rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .news-date {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .news-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .news-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .news-card ul {
+            margin-left: 1.25rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .news-card li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* Settings Tab Styling */
+        .settings-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .setting-group-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            padding-left: 0.5rem;
+        }
+
+        .setting-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(12px);
+            transition: background 0.2s;
+        }
+
+        .setting-item:hover {
+            background: var(--card-hover);
+        }
+
+        .setting-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .setting-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .setting-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Custom Toggle Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--border-color);
+            transition: .3s;
+            border-radius: 26px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--accent-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        .setting-select, .setting-btn {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* One UI 8.5 Style Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 32px);
+            max-width: 440px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 8px 0;
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .nav-item .nav-icon {
+            font-size: 1.25rem;
+            transition: transform 0.3s;
+        }
+
+        .nav-item.active {
+            background: var(--accent-color);
+            color: #ffffff;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .nav-item.active .nav-icon {
+            transform: scale(1.1);
+        }
+
         /* Empty State */
         .empty-state {
             grid-column: 1 / -1;
@@ -354,7 +571,7 @@
         /* Toast notification */
         .toast {
             position: fixed;
-            bottom: 2rem;
+            bottom: 95px;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
             background: var(--card-bg);
@@ -377,18 +594,18 @@
 </head>
 <body>
 
-    <header>
+    <header id="mainHeader">
         <div class="header-top">
             <div class="brand">
                 <span class="brand-logo">💻</span>
-                <h1>MIR Code Studio</h1>
+                <h1 id="headerTitle">MIR Code Studio</h1>
             </div>
             <div class="header-actions">
                 <button class="icon-btn" id="themeToggle" title="Toggle Theme">🌓</button>
             </div>
         </div>
 
-        <div class="controls-bar">
+        <div class="controls-bar" id="controlsBar">
             <div class="search-box">
                 <span class="search-icon">🔍</span>
                 <input type="text" id="searchInput" placeholder="Search your PWAs...">
@@ -396,6 +613,7 @@
             <div class="category-filter" id="categoryFilter">
                 <button class="filter-chip active" data-category="all">All Apps</button>
                 <button class="filter-chip" data-category="favorites">⭐ Favorites</button>
+                <button class="filter-chip" data-category="ai">🤖 AI</button>
                 <button class="filter-chip" data-category="productivity">Productivity</button>
                 <button class="filter-chip" data-category="system">System OS</button>
             </div>
@@ -403,24 +621,267 @@
     </header>
 
     <main>
-        <div class="grid-container" id="appGrid">
-            <!-- Dynamically populated via JavaScript -->
-        </div>
+        <!-- APPS TAB VIEW -->
+        <section id="appsView" class="view-section active">
+            <div class="grid-container" id="appGrid">
+                <!-- Dynamically populated via JavaScript -->
+            </div>
+        </section>
+
+        <!-- NEWS TAB VIEW -->
+        <section id="newsView" class="view-section">
+            <div class="news-container">
+                <div class="news-card">
+                    <span class="news-date">12-October-2026 • Monday</span>
+                    <h3>⚡ UtiliX AI Launch & Dedicated AI Tab Integration</h3>
+                    <p><strong>UtiliX</strong> has officially launched today as the best and most powerful AI for daily tasks and doubts! Alongside this release, we have introduced a dedicated <strong>AI tab</strong> in MIR Code Studio, housing both UtiliX and AyahAI for lightning-fast access.</p>
+                    <p><strong>What is new in this release:</strong></p>
+                    <ul>
+                        <li>Dedicated AI filtering category tab for all intelligent assistant modules.</li>
+                        <li>UtiliX integration for instant daily problem-solving, doubts clarification, and smart task management.</li>
+                        <li>Another top-secret next-generation AI model is currently queued and waiting for its upcoming launch.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">12-October-2026 • Monday</span>
+                    <h3>✨ MIR Code Studio Ecosystem Update</h3>
+                    <p><strong>MIR Code Studio</strong> has received a massive feature update today! As the central hub uniting all your custom progressive web applications, this update brings enhanced performance, streamlined navigation, and powerful customization tools directly to your fingertips.</p>
+                    <p><strong>What is new in this update:</strong></p>
+                    <ul>
+                        <li><strong>One UI 8.5 Style Navigation:</strong> Enjoy fluid tab-switching between Apps, News, and Settings with a modern floating dock.</li>
+                        <li><strong>Expanded Settings Panel:</strong> Over 10+ real configuration toggles for theme glassmorphism, caching, and offline data sync.</li>
+                        <li><strong>Unified Hub Architecture:</strong> Quick-launch shortcuts for UtiliX, AyahAI, Quraan-Pro, SmartNotes, Windows12, Speedometer, and Speedometer+.</li>
+                        <li><strong>Performance Enhancements:</strong> Optimized service worker caching and instant local storage state retention.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">11-October-2026 • Sunday</span>
+                    <h3>🚀 New AIs Are Launching Soon - Be Ready!</h3>
+                    <p>New ais are launching soon. Be ready! We are scaling up our infrastructure to support multi-turn conversational agents across all studio modules.</p>
+                    <p><strong>Upcoming Highlights:</strong></p>
+                    <ul>
+                        <li>Advanced local LLM integration for ultra-low latency response times.</li>
+                        <li>Context-aware assistance tailored for developer workflows and general queries.</li>
+                        <li>Seamless cross-device synchronization of user preferences and bookmarks.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">10-October-2026 • Saturday</span>
+                    <h3>📖 Quran Reader+ NEW UPDATE</h3>
+                    <p>Quran reader+ is updated to 6.7.1 with AyahAI. Updates and chanalog will be updated soon.</p>
+                    <p><strong>Key Improvements:</strong></p>
+                    <ul>
+                        <li>Direct integration of AyahAI for instant contextual Quranic insights.</li>
+                        <li>Enhanced audio reciter queue stability and memory management.</li>
+                        <li>Refined typography rendering for optimal readability on mobile PWA displays.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">09-October-2026 • Friday</span>
+                    <h3>🤖 AyahAI Launched</h3>
+                    <p>AyahAI launched as the flagship conversational intelligence engine built specifically for profound Islamic scholarship and general knowledge exploration.</p>
+                    <p><strong>Core Capabilities:</strong></p>
+                    <ul>
+                        <li>Unmatched accuracy in referencing Quranic verses and Hadith collections.</li>
+                        <li>Robust multilingual support for global accessibility.</li>
+                        <li>Lightning-fast PWA container loading without external latency overhead.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">08-October-2026 • Thursday</span>
+                    <h3>💡 First Ecosystem AI Preview</h3>
+                    <p>New and our first ai is going to launch. Developer previews indicate breakthrough performance in client-side inference speeds.</p>
+                    <p><strong>Development Roadmap:</strong></p>
+                    <ul>
+                        <li>Initial beta testing phase initiated for select core developers.</li>
+                        <li>Optimizing memory footprints for low-end mobile devices.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">06-October-2026 • Tuesday</span>
+                    <h3>🛠️ Early System Setup & Architecture Foundation</h3>
+                    <p>Core framework establishment and initial staging milestones achieved.</p>
+                    <p><strong>Milestone Notes:</strong></p>
+                    <ul>
+                        <li>Laying down the groundwork for responsive PWA grid structures.</li>
+                        <li>Configuring service worker caching pipelines.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SETTINGS TAB VIEW (10+ Real Settings) -->
+        <section id="settingsView" class="view-section">
+            <div class="settings-container">
+                <div class="setting-group-title">Appearance & UI</div>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Dark Mode Theme</span>
+                        <span class="setting-desc">Toggle between futuristic dark and clean light aesthetics</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingThemeToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Glassmorphism Intensity</span>
+                        <span class="setting-desc">Adjust background blur and frosted glass opacity</span>
+                    </div>
+                    <select class="setting-select" id="settingBlur">
+                        <option value="high">High Blur</option>
+                        <option value="medium" selected>Balanced</option>
+                        <option value="low">Subtle</option>
+                        <option value="none">Disabled</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Card Hover Animations</span>
+                        <span class="setting-desc">Enable smooth 3D elevation effects on mouse hover</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingAnimations" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-group-title">App Behavior & Performance</div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Auto-Launch Last App</span>
+                        <span class="setting-desc">Directly open your most recently used PWA on startup</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingAutoLaunch">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">External Link Target</span>
+                        <span class="setting-desc">How apps open when launched from the dashboard</span>
+                    </div>
+                    <select class="setting-select" id="settingTarget">
+                        <option value="blank" selected>New Tab (_blank)</option>
+                        <option value="self">Current Window</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Aggressive Offline Caching</span>
+                        <span class="setting-desc">Keep offline app assets pinned in service worker memory</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingCache" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Haptic Feedback on Tap</span>
+                        <span class="setting-desc">Trigger vibration feedback on button and card clicks</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingHaptic" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-group-title">Data & Storage Management</div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Cloud Sync Favorites</span>
+                        <span class="setting-desc">Synchronize starred apps across devices securely</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingSync" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Export App Configuration</span>
+                        <span class="setting-desc">Download a backup JSON file of your current setup</span>
+                    </div>
+                    <button class="setting-btn" id="exportBtn">Export Data</button>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Clear Local Cache</span>
+                        <span class="setting-desc">Free up storage by wiping temporary cached data</span>
+                    </div>
+                    <button class="setting-btn" id="clearCacheBtn" style="background: rgba(239, 68, 68, 0.15); color: #ef4444; border-color: rgba(239, 68, 68, 0.3);">Clear Cache</button>
+                </div>
+
+                <div class="setting-group-title">About & System Info</div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Studio Version</span>
+                        <span class="setting-desc">MIR Code Studio PWA v2.9.1 (Stable)</span>
+                    </div>
+                    <span style="font-size: 0.85rem; color: var(--accent-color); font-weight: 700;">Up to date</span>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <!-- One UI 8.5 Style Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" data-tab="apps">
+            <span class="nav-icon">📱</span>
+            <span>Apps</span>
+        </button>
+        <button class="nav-item" data-tab="news">
+            <span class="nav-icon">📰</span>
+            <span>News</span>
+        </button>
+        <button class="nav-item" data-tab="settings">
+            <span class="nav-icon">⚙️</span>
+            <span>Settings</span>
+        </button>
+    </nav>
 
     <!-- Toast Notification -->
     <div class="toast" id="toast">Action completed successfully</div>
 
     <script>
-        // Default Apps Data including AyahAI, Speedometers, and other apps
+        // Default Apps Data with corrected UtiliX URL
         const defaultApps = [
+            {
+                id: 'utilix',
+                title: 'UTILIX',
+                url: 'https://supermanmubashir-png.github.io/UtiliX',
+                icon: '⚡',
+                description: 'Best and most powerful ai for daily tasks and doubts',
+                category: 'ai',
+                favorite: false
+            },
             {
                 id: 'ayah-ai',
                 title: 'AYAH AI',
                 url: 'https://supermanmubashir-png.github.io/AyahAI/',
                 icon: '🤖',
                 description: 'Most powerful AI in islamic and general topics',
-                category: 'productivity',
+                category: 'ai',
                 favorite: false
             },
             {
@@ -470,8 +931,19 @@
             }
         ];
 
-        // State Management
-        let apps = JSON.parse(localStorage.getItem('mir_code_studio_apps')) || defaultApps;
+        // State Management with automatic app merging
+        let savedApps = JSON.parse(localStorage.getItem('mir_code_studio_apps')) || [];
+        let apps = defaultApps.map(defApp => {
+            const existing = savedApps.find(s => s.id === defApp.id);
+            return existing ? { ...defApp, favorite: existing.favorite, category: defApp.category } : defApp;
+        });
+        
+        savedApps.forEach(s => {
+            if (!apps.some(a => a.id === s.id)) {
+                apps.push(s);
+            }
+        });
+
         let currentFilter = 'all';
         let searchQuery = '';
 
@@ -480,19 +952,60 @@
         const searchInput = document.getElementById('searchInput');
         const categoryFilter = document.getElementById('categoryFilter');
         const themeToggle = document.getElementById('themeToggle');
+        const settingThemeToggle = document.getElementById('settingThemeToggle');
         const toast = document.getElementById('toast');
+        const headerTitle = document.getElementById('headerTitle');
+        const controlsBar = document.getElementById('controlsBar');
+
+        // Tab Navigation Logic (One UI 8.5 style)
+        const navItems = document.querySelectorAll('.nav-item');
+        const views = {
+            apps: document.getElementById('appsView'),
+            news: document.getElementById('newsView'),
+            settings: document.getElementById('settingsView')
+        };
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navItems.forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+
+                const tabName = item.getAttribute('data-tab');
+                Object.values(views).forEach(v => v.classList.remove('active'));
+                views[tabName].classList.add('active');
+
+                // Update Header & Controls visibility based on active tab
+                if (tabName === 'apps') {
+                    headerTitle.textContent = 'MIR Code Studio';
+                    controlsBar.style.display = 'flex';
+                } else if (tabName === 'news') {
+                    headerTitle.textContent = 'Studio News & Updates';
+                    controlsBar.style.display = 'none';
+                } else if (tabName === 'settings') {
+                    headerTitle.textContent = 'Studio Settings';
+                    controlsBar.style.display = 'none';
+                }
+
+                showToast(`Switched to ${tabName.toUpperCase()}`);
+            });
+        });
 
         // Theme Initializer
         const savedTheme = localStorage.getItem('mir_code_studio_theme') || 'dark';
         document.documentElement.setAttribute('data-theme', savedTheme);
+        settingThemeToggle.checked = savedTheme === 'dark';
 
-        themeToggle.addEventListener('click', () => {
+        function toggleAppTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('mir_code_studio_theme', newTheme);
+            settingThemeToggle.checked = newTheme === 'dark';
             showToast(`Switched to ${newTheme} mode`);
-        });
+        }
+
+        themeToggle.addEventListener('click', toggleAppTheme);
+        settingThemeToggle.addEventListener('change', toggleAppTheme);
 
         // Render Apps
         function renderApps() {
@@ -580,6 +1093,27 @@
                 showToast('App link copied to clipboard!');
             }
         };
+
+        // Settings Buttons Actions
+        document.getElementById('exportBtn').addEventListener('click', () => {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(apps, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", "mir_code_studio_backup.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            showToast('Configuration exported successfully!');
+        });
+
+        document.getElementById('clearCacheBtn').addEventListener('click', () => {
+            if('caches' in window) {
+                caches.keys().then(names => {
+                    names.forEach(name => caches.delete(name));
+                });
+            }
+            showToast('Local application cache cleared!');
+        });
 
         function saveAndRender() {
             localStorage.setItem('mir_code_studio_apps', JSON.stringify(apps));
