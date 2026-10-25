@@ -3,31 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIR Code Studio</title>
+    <title>MIR Code Studio - Master PWA Ecosystem</title>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#030712">
     <style>
         :root {
             --bg-color: #030712;
-            --card-bg: rgba(17, 24, 39, 0.7);
-            --card-hover: rgba(31, 41, 55, 0.85);
-            --border-color: rgba(255, 255, 255, 0.08);
+            --card-bg: rgba(17, 24, 39, 0.65);
+            --card-hover: rgba(31, 41, 55, 0.9);
+            --border-color: rgba(255, 255, 255, 0.1);
             --text-primary: #f3f4f6;
             --text-secondary: #9ca3af;
-            --accent-glow: rgba(56, 189, 248, 0.2);
+            --accent-glow: rgba(56, 189, 248, 0.35);
             --accent-color: #38bdf8;
+            --accent-purple: #a855f7;
+            --accent-pink: #ec4899;
             --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         [data-theme="light"] {
             --bg-color: #f8fafc;
-            --card-bg: rgba(255, 255, 255, 0.8);
-            --card-hover: rgba(255, 255, 255, 1);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-hover: rgba(255, 255, 255, 0.99);
             --border-color: rgba(0, 0, 0, 0.08);
             --text-primary: #0f172a;
             --text-secondary: #64748b;
-            --accent-glow: rgba(14, 165, 233, 0.15);
+            --accent-glow: rgba(14, 165, 233, 0.28);
             --accent-color: #0ea5e9;
+            --accent-purple: #9333ea;
+            --accent-pink: #db2777;
         }
 
         * {
@@ -36,23 +40,90 @@
             padding: 0;
         }
 
+        /* Continuous Dynamic Aura & Canvas Effects */
         body {
             font-family: var(--font-family);
             background-color: var(--bg-color);
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 60%);
+                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(168, 85, 247, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.12) 0%, transparent 60%);
             background-attachment: fixed;
             color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            transition: background-color 0.3s ease;
-            padding-bottom: 90px;
+            transition: background-color 0.4s ease;
+            padding-bottom: 110px;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* Header & Navigation */
+        /* Particle Overlay Layer */
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.85;
+        }
+
+        /* 100x Ultra-Enhanced Never-Stopping Keyframe Animations */
+        @keyframes rainbowGlowBorder {
+            0% { 
+                border-color: rgba(56, 189, 248, 0.85); 
+                box-shadow: 0 0 25px rgba(56, 189, 248, 0.4), inset 0 0 15px rgba(56, 189, 248, 0.15); 
+            }
+            33% { 
+                border-color: rgba(168, 85, 247, 0.9); 
+                box-shadow: 0 0 35px rgba(168, 85, 247, 0.5), inset 0 0 18px rgba(168, 85, 247, 0.2); 
+            }
+            66% { 
+                border-color: rgba(236, 72, 153, 0.9); 
+                box-shadow: 0 0 35px rgba(236, 72, 153, 0.5), inset 0 0 18px rgba(236, 72, 153, 0.2); 
+            }
+            100% { 
+                border-color: rgba(56, 189, 248, 0.85); 
+                box-shadow: 0 0 25px rgba(56, 189, 248, 0.4), inset 0 0 15px rgba(56, 189, 248, 0.15); 
+            }
+        }
+
+        @keyframes infiniteShimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes floatPulse3D {
+            0%, 100% { transform: translateY(0px) rotateX(0deg) scale(1); }
+            50% { transform: translateY(-8px) rotateX(2deg) scale(1.02); }
+        }
+
+        @keyframes badgeOrbit3D {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.08) rotate(4deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        @keyframes iconSpinSlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes cardLightSweep {
+            0% { transform: translateX(-150%) skewX(-30deg); }
+            100% { transform: translateX(280%) skewX(-30deg); }
+        }
+
+        @keyframes neonPulseGlow {
+            0%, 100% { filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.6)); }
+            50% { filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.9)); }
+        }
+
+        /* Header & Brand Container */
         header {
             padding: 2.5rem 1.5rem 1rem;
             display: flex;
@@ -62,6 +133,8 @@
             max-width: 900px;
             margin: 0 auto;
             width: 100%;
+            position: relative;
+            z-index: 2;
         }
 
         .header-top {
@@ -78,10 +151,12 @@
         }
 
         .brand-logo {
-            font-size: 2.2rem;
-            background: linear-gradient(135deg, #38bdf8, #a855f7);
+            font-size: 2.75rem;
+            background: linear-gradient(135deg, #38bdf8, #a855f7, #ec4899, #38bdf8);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: infiniteShimmer 4s ease infinite, floatPulse3D 4s ease-in-out infinite, neonPulseGlow 3s infinite;
         }
 
         .brand-info {
@@ -90,7 +165,7 @@
         }
 
         h1 {
-            font-size: 1.6rem;
+            font-size: 1.85rem;
             font-weight: 800;
             letter-spacing: -0.5px;
             background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
@@ -99,10 +174,11 @@
         }
 
         .credit-tag {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-            letter-spacing: 0.3px;
+            font-size: 0.78rem;
+            color: var(--accent-color);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .header-actions {
@@ -114,97 +190,178 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
+            width: 46px;
+            height: 46px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 1.1rem;
-            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            backdrop-filter: blur(14px);
+            position: relative;
+            overflow: hidden;
+            animation: rainbowGlowBorder 5s infinite ease-in-out;
         }
 
         .icon-btn:hover {
             background: var(--card-hover);
-            border-color: var(--accent-color);
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.08);
         }
 
-        /* Search & Filter Bar */
+        /* Festive Milestone Banner with Ultra Animations */
+        .milestone-banner {
+            width: 100%;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(168, 85, 247, 0.25), rgba(236, 72, 153, 0.22));
+            background-size: 300% 300%;
+            border: 1.5px solid rgba(56, 189, 248, 0.7);
+            border-radius: 22px;
+            padding: 1.1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            animation: rainbowGlowBorder 3.5s infinite ease-in-out, infiniteShimmer 5s ease infinite, floatPulse3D 3.5s infinite ease-in-out;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 15px 40px rgba(56, 189, 248, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .milestone-banner::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 45%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            animation: cardLightSweep 3.5s infinite ease-in-out;
+        }
+
+        .milestone-left {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .milestone-icon {
+            font-size: 2rem;
+            animation: iconSpinSlow 10s linear infinite;
+        }
+
+        .milestone-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .milestone-subtitle {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        .app-count-badge {
+            background: linear-gradient(135deg, #38bdf8, #a855f7, #ec4899);
+            background-size: 200% 200%;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 0.9rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            box-shadow: 0 6px 22px rgba(56, 189, 248, 0.5);
+            white-space: nowrap;
+            animation: badgeOrbit3D 2.5s infinite ease-in-out, infiniteShimmer 4s ease infinite;
+        }
+
+        /* Search & Filter Controls */
         .controls-bar {
             display: flex;
-            gap: 0.75rem;
+            flex-direction: column;
+            gap: 0.85rem;
             width: 100%;
-            flex-wrap: wrap;
         }
 
         .search-box {
-            flex: 1;
-            min-width: 200px;
+            width: 100%;
             position: relative;
         }
 
         .search-box input {
             width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.6rem;
+            padding: 0.9rem 1rem 0.9rem 2.8rem;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 16px;
             color: var(--text-primary);
             font-size: 0.95rem;
             outline: none;
-            backdrop-filter: blur(10px);
-            transition: all 0.2s ease;
+            backdrop-filter: blur(14px);
+            transition: all 0.3s ease;
         }
 
         .search-box input:focus {
             border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px var(--accent-glow);
+            box-shadow: 0 0 25px var(--accent-glow);
         }
 
         .search-icon {
             position: absolute;
-            left: 0.9rem;
+            left: 1rem;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-secondary);
+            font-size: 1.1rem;
         }
 
+        /* Category Filter Chips Grid */
         .category-filter {
             display: flex;
-            gap: 0.5rem;
-            overflow-x: auto;
-            padding-bottom: 0px;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            width: 100%;
+            justify-content: flex-start;
         }
 
         .filter-chip {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             color: var(--text-secondary);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+            padding: 0.55rem 1.1rem;
+            border-radius: 22px;
             font-size: 0.85rem;
+            font-weight: 700;
             cursor: pointer;
-            white-space: nowrap;
-            backdrop-filter: blur(10px);
-            transition: all 0.2s ease;
+            backdrop-filter: blur(14px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
         }
 
         .filter-chip.active, .filter-chip:hover {
-            background: var(--accent-color);
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-purple));
             color: #ffffff;
             border-color: transparent;
+            box-shadow: 0 5px 20px var(--accent-glow);
+            transform: translateY(-3px) scale(1.03);
         }
 
-        /* Views / Tabs Container */
+        .chip-count {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 0.12rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.72rem;
+            font-weight: 800;
+        }
+
+        /* Main Container */
         main {
             flex: 1;
             max-width: 900px;
             width: 100%;
             margin: 0 auto;
             padding: 1rem 1.5rem 3rem;
+            position: relative;
+            z-index: 2;
         }
 
         .view-section {
@@ -218,24 +375,25 @@
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1.25rem;
+            gap: 1.4rem;
         }
 
-        /* App Card */
+        /* App Cards with 100x Ultra Rainbow Glow Animations */
         .pwa-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 1.25rem;
+            border-radius: 24px;
+            padding: 1.4rem;
             display: flex;
             flex-direction: column;
             text-decoration: none;
             color: var(--text-primary);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+            animation: floatPulse3D 6s infinite ease-in-out;
         }
 
         .pwa-card::before {
@@ -251,15 +409,26 @@
             pointer-events: none;
         }
 
-        .pwa-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-color);
-            background: var(--card-hover);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        .pwa-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 60%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        .pwa-card:hover::before {
+        .pwa-card:hover {
+            transform: translateY(-9px) scale(1.03);
+            border-color: var(--accent-color);
+            background: var(--card-hover);
+            box-shadow: 0 25px 50px rgba(56, 189, 248, 0.3);
+            animation: rainbowGlowBorder 2.8s infinite ease-in-out;
+        }
+
+        .pwa-card:hover::before, .pwa-card:hover::after {
             opacity: 1;
+            animation: cardLightSweep 2s infinite ease-in-out;
         }
 
         .card-header {
@@ -270,19 +439,23 @@
         }
 
         .icon-wrapper {
-            width: 50px;
-            height: 50px;
-            border-radius: 14px;
-            background: var(--border-color);
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.75rem;
-            transition: transform 0.3s ease;
+            font-size: 1.9rem;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.08);
         }
 
         .pwa-card:hover .icon-wrapper {
-            transform: scale(1.05);
+            transform: scale(1.15) rotate(8deg);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px var(--accent-glow);
         }
 
         .card-actions {
@@ -295,10 +468,10 @@
             border: none;
             color: var(--text-secondary);
             cursor: pointer;
-            padding: 5px;
-            font-size: 1rem;
-            border-radius: 8px;
-            transition: color 0.2s, background 0.2s;
+            padding: 6px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            transition: all 0.2s;
         }
 
         .action-icon-btn:hover {
@@ -308,20 +481,21 @@
 
         .action-icon-btn.favorite.active {
             color: #ef4444;
+            transform: scale(1.2);
         }
 
         .label {
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-bottom: 0.4rem;
+            font-size: 1.12rem;
+            font-weight: 800;
+            margin-bottom: 0.45rem;
             letter-spacing: -0.3px;
         }
 
         .description {
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             color: var(--text-secondary);
-            line-height: 1.4;
-            margin-bottom: 1.25rem;
+            line-height: 1.5;
+            margin-bottom: 1.35rem;
             flex: 1;
         }
 
@@ -330,142 +504,166 @@
             align-items: center;
             justify-content: space-between;
             border-top: 1px solid var(--border-color);
-            padding-top: 0.75rem;
+            padding-top: 0.85rem;
+        }
+
+        .badge-list {
+            display: flex;
+            gap: 0.35rem;
+            flex-wrap: wrap;
         }
 
         .badge {
-            font-size: 0.7rem;
-            padding: 0.2rem 0.6rem;
-            border-radius: 6px;
+            font-size: 0.68rem;
+            padding: 0.24rem 0.7rem;
+            border-radius: 8px;
             background: var(--border-color);
             color: var(--text-secondary);
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
         }
 
         .launch-hint {
-            font-size: 0.8rem;
-            font-weight: 600;
+            font-size: 0.84rem;
+            font-weight: 800;
             color: var(--accent-color);
             display: flex;
             align-items: center;
             gap: 0.3rem;
-            opacity: 0.8;
-            transition: opacity 0.2s;
+            opacity: 0.85;
+            transition: opacity 0.2s, transform 0.2s;
         }
 
         .pwa-card:hover .launch-hint {
             opacity: 1;
+            transform: translateX(4px);
         }
 
-        /* News Tab Styling */
+        /* Detailed Big News Cards */
         .news-container {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1.6rem;
         }
 
         .news-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 1.75rem;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-radius: 24px;
+            padding: 1.85rem;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+            animation: floatPulse3D 7s infinite ease-in-out;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .news-card.featured {
+            border-color: var(--accent-color);
+            animation: rainbowGlowBorder 3.5s infinite ease-in-out, floatPulse3D 6s infinite ease-in-out;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(168, 85, 247, 0.12), rgba(236, 72, 153, 0.08));
         }
 
         .news-date {
-            font-size: 0.8rem;
-            font-weight: 700;
+            font-size: 0.82rem;
+            font-weight: 800;
             color: var(--accent-color);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.6px;
             margin-bottom: 0.5rem;
             display: block;
         }
 
         .news-card h3 {
-            font-size: 1.25rem;
+            font-size: 1.38rem;
             font-weight: 800;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
         }
 
         .news-card p {
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 0.75rem;
+            line-height: 1.65;
+            margin-bottom: 0.85rem;
         }
 
         .news-card ul {
             margin-left: 1.25rem;
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 0.96rem;
+            line-height: 1.65;
         }
 
         .news-card li {
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.45rem;
         }
 
-        /* Settings Tab Styling */
+        /* 18+ Comprehensive Settings Panel */
         .settings-container {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.1rem;
         }
 
         .setting-group-title {
-            font-size: 0.85rem;
-            font-weight: 700;
+            font-size: 0.88rem;
+            font-weight: 800;
             color: var(--accent-color);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
+            letter-spacing: 0.6px;
+            margin-top: 1.2rem;
+            margin-bottom: 0.4rem;
             padding-left: 0.5rem;
         }
 
         .setting-item {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1rem 1.25rem;
+            border-radius: 20px;
+            padding: 1.15rem 1.4rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            backdrop-filter: blur(12px);
-            transition: background 0.2s;
+            backdrop-filter: blur(16px);
+            transition: all 0.25s ease;
         }
 
         .setting-item:hover {
             background: var(--card-hover);
+            border-color: var(--accent-color);
+            box-shadow: 0 5px 20px rgba(56, 189, 248, 0.15);
         }
 
         .setting-info {
             display: flex;
             flex-direction: column;
-            gap: 0.2rem;
+            gap: 0.25rem;
         }
 
         .setting-name {
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.02rem;
+            font-weight: 700;
             color: var(--text-primary);
         }
 
         .setting-desc {
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             color: var(--text-secondary);
         }
 
-        /* Custom Toggle Switch */
+        /* Custom Toggle Switches */
         .switch {
             position: relative;
             display: inline-block;
-            width: 50px;
-            height: 26px;
+            width: 52px;
+            height: 28px;
         }
 
         .switch input {
@@ -480,14 +678,14 @@
             top: 0; left: 0; right: 0; bottom: 0;
             background-color: var(--border-color);
             transition: .3s;
-            border-radius: 26px;
+            border-radius: 28px;
         }
 
         .slider:before {
             position: absolute;
             content: "";
-            height: 20px;
-            width: 20px;
+            height: 22px;
+            width: 22px;
             left: 3px;
             bottom: 3px;
             background-color: white;
@@ -497,6 +695,7 @@
 
         input:checked + .slider {
             background-color: var(--accent-color);
+            box-shadow: 0 0 12px var(--accent-glow);
         }
 
         input:checked + .slider:before {
@@ -507,30 +706,38 @@
             background: var(--bg-color);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
-            padding: 0.4rem 0.8rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
+            padding: 0.5rem 0.95rem;
+            border-radius: 12px;
+            font-size: 0.88rem;
+            font-weight: 600;
             outline: none;
             cursor: pointer;
+            transition: all 0.2s;
         }
 
-        /* One UI 8.5 Style Bottom Navigation Bar */
+        .setting-select:focus, .setting-btn:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        /* One UI 8.5 Floating Bottom Dock Navigation Bar */
         .bottom-nav {
             position: fixed;
-            bottom: 16px;
+            bottom: 18px;
             left: 50%;
             transform: translateX(-50%);
             width: calc(100% - 32px);
-            max-width: 440px;
+            max-width: 460px;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            backdrop-filter: blur(20px);
-            border-radius: 28px;
+            backdrop-filter: blur(25px);
+            border-radius: 32px;
             display: flex;
             justify-content: space-around;
-            padding: 8px 12px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            padding: 8px 14px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
             z-index: 1000;
+            animation: rainbowGlowBorder 4s infinite ease-in-out;
         }
 
         .nav-item {
@@ -545,25 +752,48 @@
             color: var(--text-secondary);
             cursor: pointer;
             padding: 8px 0;
-            border-radius: 20px;
+            border-radius: 22px;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.76rem;
+            font-weight: 700;
         }
 
         .nav-item .nav-icon {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             transition: transform 0.3s;
         }
 
         .nav-item.active {
-            background: var(--accent-color);
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-purple));
             color: #ffffff;
-            box-shadow: 0 4px 15px var(--accent-glow);
+            box-shadow: 0 4px 18px var(--accent-glow);
         }
 
         .nav-item.active .nav-icon {
-            transform: scale(1.1);
+            transform: scale(1.18);
+        }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 105px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            color: var(--text-primary);
+            padding: 0.85rem 1.7rem;
+            border-radius: 16px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+            backdrop-filter: blur(16px);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1100;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
         }
 
         /* Empty State */
@@ -575,36 +805,17 @@
         }
 
         .empty-state span {
-            font-size: 3rem;
+            font-size: 3.5rem;
             display: block;
             margin-bottom: 1rem;
-        }
-
-        /* Toast notification */
-        .toast {
-            position: fixed;
-            bottom: 95px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 1100;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
+            animation: floatPulse3D 3s infinite ease-in-out;
         }
     </style>
 </head>
 <body>
+
+    <!-- Particle Animation Background Canvas Layer -->
+    <canvas id="bgCanvas"></canvas>
 
     <header id="mainHeader">
         <div class="header-top">
@@ -620,20 +831,34 @@
             </div>
         </div>
 
+        <!-- Festive Milestone Banner with Never-Stopping Animations -->
+        <div class="milestone-banner">
+            <div class="milestone-left">
+                <span class="milestone-icon">🎉</span>
+                <div>
+                    <div class="milestone-title">10 Successful PWAs Milestone</div>
+                    <div class="milestone-subtitle">All apps deployed & running seamlessly in ecosystem</div>
+                </div>
+            </div>
+            <div class="app-count-badge" id="appCountDisplay">🚀 10 Apps Active</div>
+        </div>
+
         <div class="controls-bar" id="controlsBar">
             <div class="search-box">
                 <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput" placeholder="Search your PWAs...">
+                <input type="text" id="searchInput" placeholder="Search across all 10 PWAs...">
             </div>
+
+            <!-- Category Filter Chips -->
             <div class="category-filter" id="categoryFilter">
-                <button class="filter-chip active" data-category="all">All Apps</button>
-                <button class="filter-chip" data-category="favorites">⭐ Favorites</button>
-                <button class="filter-chip" data-category="ai">🤖 AI</button>
-                <button class="filter-chip" data-category="speedometer">🏎️ Speedometer</button>
-                <button class="filter-chip" data-category="os">💻 OS</button>
-                <button class="filter-chip" data-category="quranic">📖 Quranic</button>
-                <button class="filter-chip" data-category="quran-reader">📖 Quran Reader</button>
-                <button class="filter-chip" data-category="social">💬 Social</button>
+                <button class="filter-chip active" data-category="all">⚡ All <span class="chip-count">10</span></button>
+                <button class="filter-chip" data-category="favorites">⭐ Favorites <span class="chip-count" id="favCount">0</span></button>
+                <button class="filter-chip" data-category="ai">🤖 AI <span class="chip-count">5</span></button>
+                <button class="filter-chip" data-category="quran-reader">📖 Quran Reader <span class="chip-count">3</span></button>
+                <button class="filter-chip" data-category="quranic">🕋 Quranic <span class="chip-count">4</span></button>
+                <button class="filter-chip" data-category="social">💬 Social <span class="chip-count">1</span></button>
+                <button class="filter-chip" data-category="speedometer">🏎️ Speedometer <span class="chip-count">2</span></button>
+                <button class="filter-chip" data-category="os">💻 OS <span class="chip-count">1</span></button>
             </div>
         </div>
     </header>
@@ -649,15 +874,34 @@
         <!-- NEWS TAB VIEW -->
         <section id="newsView" class="view-section">
             <div class="news-container">
+                <div class="news-card featured">
+                    <span class="news-date">25-10-2026 • Sunday</span>
+                    <h3>🎉 10 Successful Progressive Web Apps Milestone Achieved!</h3>
+                    <p><strong>MIR Code Studio</strong> has officially reached a monumental milestone today! We have successfully engineered, deployed, and integrated <strong>10 high-performance Progressive Web Applications (PWAs)</strong> into our unified master studio ecosystem.</p>
+                    <p><strong>Complete Ecosystem Lineup (10 Live PWAs):</strong></p>
+                    <ul>
+                        <li><strong>SyncBee:</strong> Seamless real-time chatting and file sending application supercharged by UtiliX AI.</li>
+                        <li><strong>UtiliX:</strong> Premier client-side AI assistant for daily task automation, multi-turn reasoning, and instant doubt resolution.</li>
+                        <li><strong>AyahAI:</strong> Flagship conversational intelligence engine built specifically for profound Islamic scholarship and general knowledge exploration.</li>
+                        <li><strong>Quran Reader+:</strong> Premium digital Quran reading experience supercharged with direct AyahAI contextual insights.</li>
+                        <li><strong>Quran Hub:</strong> Multi-engine container providing 7 different Quran reader apps in one unified seamless interface.</li>
+                        <li><strong>Noor Al Quran:</strong> Our most advanced Quran reader featuring rich typography, deep search capabilities, and immersive reciter features.</li>
+                        <li><strong>Smart Notes:</strong> Highly organized quick note-taking tool integrated with UtiliX AI text summarization and automatic categorization.</li>
+                        <li><strong>Windows 12:</strong> Futuristic client-side desktop operating system web container featuring fluid desktop layouts and settings.</li>
+                        <li><strong>Speedometer:</strong> Precision real-time GPS speed and travel metrics tracker for vehicle and journey monitoring.</li>
+                        <li><strong>Speedometer+:</strong> Advanced telemetry speed tracking with trip history logging, analog/digital HUD modes, and export capabilities.</li>
+                    </ul>
+                </div>
+
                 <div class="news-card">
                     <span class="news-date">25-10-2026 • Sunday</span>
                     <h3>🕋 Quran Hub Launch</h3>
                     <p><strong>Quran Hub</strong> is officially live today! Offering a unique and immersive experience combining 7 different Quran reader apps into a single seamless PWA interface.</p>
-                    <p><strong>Highlights:</strong></p>
+                    <p><strong>Key Highlights:</strong></p>
                     <ul>
-                        <li>Switch effortlessly between 7 different Quran reader experiences.</li>
-                        <li>Optimized navigation and reading layouts for both mobile and desktop.</li>
-                        <li>Added directly under the Quran Reader and Quranic ecosystem tabs.</li>
+                        <li>Switch effortlessly between 7 distinct Quran reader experiences.</li>
+                        <li>Optimized navigation and reading layouts for both mobile and desktop screens.</li>
+                        <li>Integrated directly under the Quran Reader and Quranic ecosystem tabs.</li>
                     </ul>
                 </div>
 
@@ -665,7 +909,7 @@
                     <span class="news-date">24-10-2026 • Saturday</span>
                     <h3>🌙 Noor Al Quran Launch</h3>
                     <p><strong>Noor Al Quran</strong> has launched as our most advanced Quran reader application to date! Packed with cutting-edge typography, deep search capabilities, and immersive reciter features.</p>
-                    <p><strong>Highlights:</strong></p>
+                    <p><strong>Key Highlights:</strong></p>
                     <ul>
                         <li>State-of-the-art advanced Quran reading layout and tools.</li>
                         <li>Seamless integration into the Quran Reader tab.</li>
@@ -704,7 +948,7 @@
                     <ul>
                         <li>Real-time chat and high-speed file transfers directly through web containers.</li>
                         <li>UtiliX AI-powered message assistance and smart file search protocols.</li>
-                        <li>Integrated cleanly into the MIR Code Studio AI tab for rapid accessibility.</li>
+                        <li>Integrated cleanly into the MIR Code Studio ecosystem for rapid accessibility.</li>
                     </ul>
                 </div>
 
@@ -739,8 +983,8 @@
                     <p><strong>What is new in this update:</strong></p>
                     <ul>
                         <li><strong>One UI 8.5 Style Navigation:</strong> Enjoy fluid tab-switching between Apps, News, and Settings with a modern floating dock.</li>
-                        <li><strong>Expanded Settings Panel:</strong> Over 10+ real configuration toggles for theme glassmorphism, caching, and offline data sync.</li>
-                        <li><strong>Unified Hub Architecture:</strong> Quick-launch shortcuts for SyncBee, UtiliX, AyahAI, SmartNotes, Quran Reader+, Windows 12, Speedometer, and Speedometer+.</li>
+                        <li><strong>Expanded Settings Panel:</strong> Over 18+ real configuration toggles for theme glassmorphism, caching, and offline data sync.</li>
+                        <li><strong>Unified Hub Architecture:</strong> Quick-launch shortcuts for all 10 core progressive web applications.</li>
                         <li><strong>Performance Enhancements:</strong> Optimized service worker caching and instant local storage state retention.</li>
                     </ul>
                 </div>
@@ -780,40 +1024,31 @@
                         <li>Lightning-fast PWA container loading without external latency overhead.</li>
                     </ul>
                 </div>
-
-                <div class="news-card">
-                    <span class="news-date">08-October-2026 • Thursday</span>
-                    <h3>💡 First Ecosystem AI Preview</h3>
-                    <p>New and our first ai is going to launch. Developer previews indicate breakthrough performance in client-side inference speeds.</p>
-                    <p><strong>Development Roadmap:</strong></p>
-                    <ul>
-                        <li>Initial beta testing phase initiated for select core developers.</li>
-                        <li>Optimizing memory footprints for low-end mobile devices.</li>
-                    </ul>
-                </div>
-
-                <div class="news-card">
-                    <span class="news-date">06-October-2026 • Tuesday</span>
-                    <h3>🛠️ Early System Setup & Architecture Foundation</h3>
-                    <p>Core framework establishment and initial staging milestones achieved.</p>
-                    <p><strong>Milestone Notes:</strong></p>
-                    <ul>
-                        <li>Laying down the groundwork for responsive PWA grid structures.</li>
-                        <li>Configuring service worker caching pipelines.</li>
-                    </ul>
-                </div>
             </div>
         </section>
 
-        <!-- SETTINGS TAB VIEW (10+ Real Settings) -->
+        <!-- SETTINGS TAB VIEW -->
         <section id="settingsView" class="view-section">
             <div class="settings-container">
-                <div class="setting-group-title">Appearance & UI</div>
+                <div class="setting-group-title">Milestone & Layout Preference</div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">10 Apps Celebration Mode</span>
+                        <span class="setting-desc">Toggle celebration animations, floating particles & milestone banner</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingCelebration" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-group-title">Visual & Theme Customization</div>
                 
                 <div class="setting-item">
                     <div class="setting-info">
-                        <span class="setting-name">Dark Mode Theme</span>
-                        <span class="setting-desc">Toggle between futuristic dark and clean light aesthetics</span>
+                        <span class="setting-name">Dark Mode Aesthetic</span>
+                        <span class="setting-desc">Toggle between futuristic OLED dark and light modes</span>
                     </div>
                     <label class="switch">
                         <input type="checkbox" id="settingThemeToggle" checked>
@@ -823,34 +1058,102 @@
 
                 <div class="setting-item">
                     <div class="setting-info">
-                        <span class="setting-name">Glassmorphism Intensity</span>
-                        <span class="setting-desc">Adjust background blur and frosted glass opacity</span>
+                        <span class="setting-name">Infinite Background Particles</span>
+                        <span class="setting-desc">Enable smooth floating particle background animation canvas</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingParticles" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Rainbow Border Glowing</span>
+                        <span class="setting-desc">Continuous never-stopping border glow on cards and dock</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingBorderGlow" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Glassmorphism Blur Depth</span>
+                        <span class="setting-desc">Adjust background glass blur intensity across containers</span>
                     </div>
                     <select class="setting-select" id="settingBlur">
-                        <option value="high">High Blur</option>
-                        <option value="medium" selected>Balanced</option>
-                        <option value="low">Subtle</option>
+                        <option value="ultra">Ultra Blur (25px)</option>
+                        <option value="high" selected>Balanced Blur (14px)</option>
+                        <option value="subtle">Subtle Blur (6px)</option>
                         <option value="none">Disabled</option>
+                    </select>
+                </div>
+
+                <div class="setting-group-title">Animation & Interactive Effects</div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">3D Hover Elevation</span>
+                        <span class="setting-desc">Enable dynamic floating tilt on mouse card hover</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingHover3D" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Shimmer Light Sweeps</span>
+                        <span class="setting-desc">Continuous ambient light sweep animations across banners</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingShimmer" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Card Floating Pulsation</span>
+                        <span class="setting-desc">Never-stopping smooth floating pulsation on app cards</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingCardPulse" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Haptic Vibration Touch</span>
+                        <span class="setting-desc">Provide physical haptic feedback on button clicks on supported mobile devices</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingHaptic" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-group-title">App Launch & Navigation Behavior</div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Launch Link Target</span>
+                        <span class="setting-desc">Choose how PWAs open when clicked from dashboard</span>
+                    </div>
+                    <select class="setting-select" id="settingTarget">
+                        <option value="blank" selected>New Window / Tab (_blank)</option>
+                        <option value="self">Current Window Frame</option>
                     </select>
                 </div>
 
                 <div class="setting-item">
                     <div class="setting-info">
-                        <span class="setting-name">Card Hover Animations</span>
-                        <span class="setting-desc">Enable smooth 3D elevation effects on mouse hover</span>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="settingAnimations" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
-
-                <div class="setting-group-title">App Behavior & Performance</div>
-
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <span class="setting-name">Auto-Launch Last App</span>
-                        <span class="setting-desc">Directly open your most recently used PWA on startup</span>
+                        <span class="setting-name">Auto-Launch Most Played App</span>
+                        <span class="setting-desc">Automatically launch your primary app on studio startup</span>
                     </div>
                     <label class="switch">
                         <input type="checkbox" id="settingAutoLaunch">
@@ -860,19 +1163,23 @@
 
                 <div class="setting-item">
                     <div class="setting-info">
-                        <span class="setting-name">External Link Target</span>
-                        <span class="setting-desc">How apps open when launched from the dashboard</span>
+                        <span class="setting-name">Default Startup Filter</span>
+                        <span class="setting-desc">Select initial app view category on studio load</span>
                     </div>
-                    <select class="setting-select" id="settingTarget">
-                        <option value="blank" selected>New Tab (_blank)</option>
-                        <option value="self">Current Window</option>
+                    <select class="setting-select" id="settingDefaultCategory">
+                        <option value="all" selected>All Apps</option>
+                        <option value="favorites">⭐ Favorites Only</option>
+                        <option value="ai">🤖 AI Apps</option>
+                        <option value="quran-reader">📖 Quran Readers</option>
                     </select>
                 </div>
 
+                <div class="setting-group-title">Performance & Data Cache</div>
+
                 <div class="setting-item">
                     <div class="setting-info">
-                        <span class="setting-name">Aggressive Offline Caching</span>
-                        <span class="setting-desc">Keep offline app assets pinned in service worker memory</span>
+                        <span class="setting-name">Service Worker Aggressive Cache</span>
+                        <span class="setting-desc">Pre-pin offline web app assets into memory</span>
                     </div>
                     <label class="switch">
                         <input type="checkbox" id="settingCache" checked>
@@ -882,62 +1189,46 @@
 
                 <div class="setting-item">
                     <div class="setting-info">
-                        <span class="setting-name">Haptic Feedback on Tap</span>
-                        <span class="setting-desc">Trigger vibration feedback on button and card clicks</span>
+                        <span class="setting-name">Export Studio Backup</span>
+                        <span class="setting-desc">Download a JSON configuration file of your app setup</span>
                     </div>
-                    <label class="switch">
-                        <input type="checkbox" id="settingHaptic" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
-
-                <div class="setting-group-title">Data & Storage Management</div>
-
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <span class="setting-name">Cloud Sync Favorites</span>
-                        <span class="setting-desc">Synchronize starred apps across devices securely</span>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="settingSync" checked>
-                        <span class="slider"></span>
-                    </label>
+                    <button class="setting-btn" id="exportBtn">Export Config</button>
                 </div>
 
                 <div class="setting-item">
                     <div class="setting-info">
-                        <span class="setting-name">Export App Configuration</span>
-                        <span class="setting-desc">Download a backup JSON file of your current setup</span>
+                        <span class="setting-name">Reset Favorites & Preferences</span>
+                        <span class="setting-desc">Restore original default settings and star states</span>
                     </div>
-                    <button class="setting-btn" id="exportBtn">Export Data</button>
+                    <button class="setting-btn" id="resetBtn" style="background: rgba(239, 68, 68, 0.15); color: #ef4444; border-color: rgba(239, 68, 68, 0.3);">Reset Studio</button>
                 </div>
 
                 <div class="setting-item">
                     <div class="setting-info">
-                        <span class="setting-name">Clear Local Cache</span>
-                        <span class="setting-desc">Free up storage by wiping temporary cached data</span>
+                        <span class="setting-name">Clear Offline Cache</span>
+                        <span class="setting-desc">Flush temporary service worker assets to free storage</span>
                     </div>
-                    <button class="setting-btn" id="clearCacheBtn" style="background: rgba(239, 68, 68, 0.15); color: #ef4444; border-color: rgba(239, 68, 68, 0.3);">Clear Cache</button>
+                    <button class="setting-btn" id="clearCacheBtn">Clear Cache</button>
                 </div>
 
-                <div class="setting-group-title">About & System Info</div>
+                <div class="setting-group-title">About Studio</div>
 
                 <div class="setting-item">
                     <div class="setting-info">
-                        <span class="setting-name">Studio Version</span>
-                        <span class="setting-desc">MIR Code Studio PWA v3.5.1 (Stable) • Made by Mubashir</span>
+                        <span class="setting-name">MIR Code Studio Ecosystem</span>
+                        <span class="setting-desc">PWA v4.3.0 (Master Edition) • Developed by Mubashir</span>
                     </div>
-                    <span style="font-size: 0.85rem; color: var(--accent-color); font-weight: 700;">Up to date</span>
+                    <span style="font-size: 0.85rem; color: var(--accent-color); font-weight: 800;">10 APPS LIVE</span>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- One UI 8.5 Style Bottom Navigation Bar -->
+    <!-- One UI 8.5 Style Bottom Floating Navigation Dock -->
     <nav class="bottom-nav">
         <button class="nav-item active" data-tab="apps">
             <span class="nav-icon">📱</span>
-            <span>Apps</span>
+            <span>Apps (10)</span>
         </button>
         <button class="nav-item" data-tab="news">
             <span class="nav-icon">📰</span>
@@ -953,7 +1244,13 @@
     <div class="toast" id="toast">Action completed successfully</div>
 
     <script>
-        // Default Apps Data with updated categories and URLs
+        // Check celebration preference immediately on boot
+        const savedCelebrationMode = localStorage.getItem('mir_code_studio_celebration');
+        if (savedCelebrationMode === 'off') {
+            window.location.href = 'old.html';
+        }
+
+        // 10 Successful Apps Master Dataset
         const defaultApps = [
             {
                 id: 'syncbee',
@@ -1047,19 +1344,11 @@
             }
         ];
 
-        // State Management with automatic app merging
+        // State Management
         let savedApps = JSON.parse(localStorage.getItem('mir_code_studio_apps')) || [];
         let apps = defaultApps.map(defApp => {
             const existing = savedApps.find(s => s.id === defApp.id || (defApp.id === 'syncbee' && s.id === 'connectly') || (defApp.id === 'quran-reader-plus' && s.id === 'quraan-pro'));
             return existing ? { ...defApp, favorite: existing.favorite, categories: defApp.categories } : defApp;
-        });
-        
-        savedApps.forEach(s => {
-            if (s.id === 'connectly') s.id = 'syncbee';
-            if (s.id === 'quraan-pro') s.id = 'quran-reader-plus';
-            if (!apps.some(a => a.id === s.id)) {
-                apps.push(s);
-            }
         });
 
         let currentFilter = 'all';
@@ -1071,11 +1360,28 @@
         const categoryFilter = document.getElementById('categoryFilter');
         const themeToggle = document.getElementById('themeToggle');
         const settingThemeToggle = document.getElementById('settingThemeToggle');
+        const settingCelebration = document.getElementById('settingCelebration');
         const toast = document.getElementById('toast');
         const headerTitle = document.getElementById('headerTitle');
         const controlsBar = document.getElementById('controlsBar');
+        const favCount = document.getElementById('favCount');
 
-        // Tab Navigation Logic (One UI 8.5 style)
+        // Celebration Mode Toggle Handler
+        settingCelebration.checked = savedCelebrationMode !== 'off';
+        settingCelebration.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                localStorage.setItem('mir_code_studio_celebration', 'on');
+                showToast('10 Apps Celebration Mode Enabled');
+            } else {
+                localStorage.setItem('mir_code_studio_celebration', 'off');
+                showToast('Preference Saved: Celebration OFF');
+                setTimeout(() => {
+                    window.location.href = 'old.html';
+                }, 800);
+            }
+        });
+
+        // Tab Navigation Logic
         const navItems = document.querySelectorAll('.nav-item');
         const views = {
             apps: document.getElementById('appsView'),
@@ -1092,7 +1398,6 @@
                 Object.values(views).forEach(v => v.classList.remove('active'));
                 views[tabName].classList.add('active');
 
-                // Update Header & Controls visibility based on active tab
                 if (tabName === 'apps') {
                     headerTitle.textContent = 'MIR Code Studio';
                     controlsBar.style.display = 'flex';
@@ -1129,6 +1434,9 @@
         function renderApps() {
             appGrid.innerHTML = '';
 
+            const favs = apps.filter(a => a.favorite).length;
+            if(favCount) favCount.textContent = favs;
+
             let filtered = apps.filter(app => {
                 const matchesSearch = app.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                                       app.description.toLowerCase().includes(searchQuery.toLowerCase());
@@ -1147,7 +1455,7 @@
                 appGrid.innerHTML = `
                     <div class="empty-state">
                         <span>📭</span>
-                        <p>No applications found</p>
+                        <p>No applications match your search criteria</p>
                     </div>
                 `;
                 return;
@@ -1158,7 +1466,9 @@
                 card.href = app.url;
                 card.target = '_blank';
                 card.className = 'pwa-card';
-                const catBadge = app.categories ? app.categories.join(' • ') : (app.category || 'app');
+                
+                const badgesHtml = (app.categories || []).map(cat => `<span class="badge">${cat}</span>`).join('');
+                
                 card.innerHTML = `
                     <div class="card-header">
                         <div class="icon-wrapper">${app.icon}</div>
@@ -1174,7 +1484,7 @@
                     <div class="label">${app.title}</div>
                     <div class="description">${app.description}</div>
                     <div class="card-footer">
-                        <span class="badge">${catBadge}</span>
+                        <div class="badge-list">${badgesHtml}</div>
                         <span class="launch-hint">Launch ↗</span>
                     </div>
                 `;
@@ -1182,18 +1492,18 @@
             });
         }
 
-        // Search Listener
+        // Search & Filter Listeners
         searchInput.addEventListener('input', (e) => {
             searchQuery = e.target.value;
             renderApps();
         });
 
-        // Category Filter Listeners
         categoryFilter.addEventListener('click', (e) => {
-            if (e.target.classList.contains('filter-chip')) {
+            const chip = e.target.closest('.filter-chip');
+            if (chip) {
                 document.querySelectorAll('.filter-chip').forEach(btn => btn.classList.remove('active'));
-                e.target.classList.add('active');
-                currentFilter = e.target.getAttribute('data-category');
+                chip.classList.add('active');
+                currentFilter = chip.getAttribute('data-category');
                 renderApps();
             }
         });
@@ -1202,7 +1512,7 @@
         window.toggleFavorite = function(id) {
             apps = apps.map(app => app.id === id ? { ...app, favorite: !app.favorite } : app);
             saveAndRender();
-            showToast('Updated favorites');
+            showToast('Favorites updated');
         };
 
         // Share Functionality
@@ -1211,7 +1521,7 @@
                 navigator.share({ title: title, url: url }).catch(() => {});
             } else {
                 navigator.clipboard.writeText(url);
-                showToast('App link copied to clipboard!');
+                showToast('Link copied to clipboard!');
             }
         };
 
@@ -1224,7 +1534,14 @@
             document.body.appendChild(downloadAnchor);
             downloadAnchor.click();
             downloadAnchor.remove();
-            showToast('Configuration exported successfully!');
+            showToast('Config backup exported!');
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            localStorage.removeItem('mir_code_studio_apps');
+            apps = defaultApps;
+            renderApps();
+            showToast('Studio settings reset to default');
         });
 
         document.getElementById('clearCacheBtn').addEventListener('click', () => {
@@ -1233,7 +1550,7 @@
                     names.forEach(name => caches.delete(name));
                 });
             }
-            showToast('Local application cache cleared!');
+            showToast('Offline cache wiped successfully!');
         });
 
         function saveAndRender() {
@@ -1241,23 +1558,64 @@
             renderApps();
         }
 
-        // Toast Helper
         function showToast(message) {
             toast.textContent = message;
             toast.classList.add('show');
             setTimeout(() => {
                 toast.classList.remove('show');
-            }, 2500);
+            }, 2400);
         }
 
-        // Service Worker Registration for PWA capability
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js').catch(() => {});
+        // Particle Canvas Background Script
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2.5 + 0.5;
+                this.speedX = Math.random() * 0.6 - 0.3;
+                this.speedY = Math.random() * -0.6 - 0.15;
+                this.opacity = Math.random() * 0.7 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(56, 189, 248, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 55; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
             });
+            requestAnimationFrame(animateParticles);
         }
+        animateParticles();
 
-        // Initial render
+        // Initial Render
         renderApps();
     </script>
 </body>
