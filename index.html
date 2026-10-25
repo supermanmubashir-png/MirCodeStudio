@@ -9,12 +9,12 @@
     <style>
         :root {
             --bg-color: #030712;
-            --card-bg: rgba(15, 23, 42, 0.82);
-            --card-hover: rgba(30, 41, 59, 0.96);
-            --border-color: rgba(56, 189, 248, 0.22);
+            --card-bg: rgba(15, 23, 42, 0.88);
+            --card-hover: rgba(30, 41, 59, 0.98);
+            --border-color: rgba(56, 189, 248, 0.28);
             --text-primary: #ffffff;
             --text-secondary: #cbd5e1;
-            --accent-glow: rgba(56, 189, 248, 0.45);
+            --accent-glow: rgba(56, 189, 248, 0.5);
             --accent-color: #38bdf8;
             --accent-purple: #a855f7;
             --accent-pink: #ec4899;
@@ -22,13 +22,13 @@
         }
 
         [data-theme="light"] {
-            --bg-color: #f1f5f9;
-            --card-bg: rgba(255, 255, 255, 0.95);
+            --bg-color: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.96);
             --card-hover: rgba(255, 255, 255, 1);
-            --border-color: rgba(14, 165, 233, 0.25);
+            --border-color: rgba(14, 165, 233, 0.3);
             --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --accent-glow: rgba(14, 165, 233, 0.3);
+            --text-secondary: #334155;
+            --accent-glow: rgba(14, 165, 233, 0.35);
             --accent-color: #0284c7;
             --accent-purple: #9333ea;
             --accent-pink: #db2777;
@@ -43,14 +43,14 @@
             text-rendering: optimizeLegibility;
         }
 
-        /* Dynamic Aura & Background Canvas */
+        /* Crystal Clear Dynamic Background */
         body {
             font-family: var(--font-family);
             background-color: var(--bg-color);
             background-image: 
-                radial-gradient(circle at 10% 10%, rgba(56, 189, 248, 0.18) 0%, transparent 45%),
-                radial-gradient(circle at 90% 90%, rgba(168, 85, 247, 0.18) 0%, transparent 45%),
-                radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.12) 0%, transparent 60%);
+                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.2) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(168, 85, 247, 0.2) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.15) 0%, transparent 60%);
             background-attachment: fixed;
             color: var(--text-primary);
             min-height: 100vh;
@@ -70,26 +70,26 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
         /* 100x Ultra-Enhanced Keyframe Animations */
         @keyframes rainbowGlowBorder {
             0% { 
-                border-color: rgba(56, 189, 248, 0.9); 
-                box-shadow: 0 0 30px rgba(56, 189, 248, 0.4), inset 0 0 15px rgba(56, 189, 248, 0.15); 
+                border-color: rgba(56, 189, 248, 0.95); 
+                box-shadow: 0 0 35px rgba(56, 189, 248, 0.45), inset 0 0 15px rgba(56, 189, 248, 0.18); 
             }
             33% { 
                 border-color: rgba(168, 85, 247, 0.95); 
-                box-shadow: 0 0 40px rgba(168, 85, 247, 0.55), inset 0 0 20px rgba(168, 85, 247, 0.2); 
+                box-shadow: 0 0 45px rgba(168, 85, 247, 0.6), inset 0 0 20px rgba(168, 85, 247, 0.22); 
             }
             66% { 
                 border-color: rgba(236, 72, 153, 0.95); 
-                box-shadow: 0 0 40px rgba(236, 72, 153, 0.55), inset 0 0 20px rgba(236, 72, 153, 0.2); 
+                box-shadow: 0 0 45px rgba(236, 72, 153, 0.6), inset 0 0 20px rgba(236, 72, 153, 0.22); 
             }
             100% { 
-                border-color: rgba(56, 189, 248, 0.9); 
-                box-shadow: 0 0 30px rgba(56, 189, 248, 0.4), inset 0 0 15px rgba(56, 189, 248, 0.15); 
+                border-color: rgba(56, 189, 248, 0.95); 
+                box-shadow: 0 0 35px rgba(56, 189, 248, 0.45), inset 0 0 15px rgba(56, 189, 248, 0.18); 
             }
         }
 
@@ -101,12 +101,12 @@
 
         @keyframes floatPulse3D {
             0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-6px) scale(1.015); }
+            50% { transform: translateY(-7px) scale(1.02); }
         }
 
         @keyframes badgeOrbit3D {
             0% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.06) rotate(3deg); }
+            50% { transform: scale(1.08) rotate(4deg); }
             100% { transform: scale(1) rotate(0deg); }
         }
 
@@ -148,7 +148,7 @@
         }
 
         .brand-logo {
-            font-size: 2.75rem;
+            font-size: 2.85rem;
             background: linear-gradient(135deg, #38bdf8, #a855f7, #ec4899, #38bdf8);
             background-size: 300% 300%;
             -webkit-background-clip: text;
@@ -162,17 +162,17 @@
         }
 
         h1 {
-            font-size: 1.85rem;
+            font-size: 1.9rem;
             font-weight: 800;
             letter-spacing: -0.5px;
             color: var(--text-primary);
         }
 
         .credit-tag {
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             color: var(--accent-color);
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            font-weight: 800;
+            letter-spacing: 0.6px;
             text-transform: uppercase;
         }
 
@@ -183,17 +183,17 @@
 
         .icon-btn {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
+            border: 1.5px solid var(--border-color);
             color: var(--text-primary);
-            width: 46px;
-            height: 46px;
+            width: 48px;
+            height: 48px;
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             position: relative;
             overflow: hidden;
             animation: rainbowGlowBorder 5s infinite ease-in-out;
@@ -201,23 +201,23 @@
 
         .icon-btn:hover {
             background: var(--card-hover);
-            transform: translateY(-3px) scale(1.08);
+            transform: translateY(-3px) scale(1.1);
         }
 
-        /* Ultra-Enhanced Festive Milestone Banner */
+        /* Ultra-Enhanced Festive Milestone Banner (Crisp & Clickable) */
         .milestone-banner {
             width: 100%;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(168, 85, 247, 0.28), rgba(236, 72, 153, 0.25));
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.28), rgba(168, 85, 247, 0.3), rgba(236, 72, 153, 0.28));
             background-size: 300% 300%;
-            border: 2px solid rgba(56, 189, 248, 0.8);
+            border: 2px solid rgba(56, 189, 248, 0.85);
             border-radius: 22px;
-            padding: 1.15rem 1.6rem;
+            padding: 1.2rem 1.65rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 1rem;
             animation: rainbowGlowBorder 3.5s infinite ease-in-out, infiniteShimmer 5s ease infinite, floatPulse3D 3.5s infinite ease-in-out;
-            box-shadow: 0 15px 45px rgba(56, 189, 248, 0.35);
+            box-shadow: 0 15px 45px rgba(56, 189, 248, 0.4);
             position: relative;
             overflow: hidden;
             cursor: pointer;
@@ -226,7 +226,7 @@
 
         .milestone-banner:hover {
             transform: translateY(-3px) scale(1.01);
-            box-shadow: 0 20px 60px rgba(168, 85, 247, 0.5);
+            box-shadow: 0 20px 60px rgba(168, 85, 247, 0.55);
             border-color: #a855f7;
         }
 
@@ -234,31 +234,31 @@
             content: '';
             position: absolute;
             top: 0; left: 0; width: 45%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
             animation: cardLightSweep 3.5s infinite ease-in-out;
         }
 
         .milestone-left {
             display: flex;
             align-items: center;
-            gap: 0.9rem;
+            gap: 0.95rem;
         }
 
         .milestone-icon {
-            font-size: 2.2rem;
+            font-size: 2.25rem;
             animation: iconSpinSlow 10s linear infinite;
         }
 
         .milestone-title {
-            font-size: 1.1rem;
+            font-size: 1.12rem;
             font-weight: 800;
             color: var(--text-primary);
         }
 
         .milestone-subtitle {
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             color: var(--text-secondary);
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .app-count-badge {
@@ -267,9 +267,9 @@
             color: #ffffff;
             font-weight: 800;
             font-size: 0.95rem;
-            padding: 0.55rem 1.3rem;
+            padding: 0.55rem 1.35rem;
             border-radius: 30px;
-            box-shadow: 0 6px 25px rgba(56, 189, 248, 0.6);
+            box-shadow: 0 6px 25px rgba(56, 189, 248, 0.65);
             white-space: nowrap;
             animation: badgeOrbit3D 2.5s infinite ease-in-out, infiniteShimmer 4s ease infinite;
         }
@@ -289,13 +289,13 @@
 
         .search-box input {
             width: 100%;
-            padding: 0.95rem 1rem 0.95rem 3rem;
+            padding: 1rem 1rem 1rem 3.1rem;
             background: var(--card-bg);
             border: 1.5px solid var(--border-color);
             border-radius: 18px;
             color: var(--text-primary);
-            font-size: 1rem;
-            font-weight: 500;
+            font-size: 1.02rem;
+            font-weight: 600;
             outline: none;
             transition: all 0.3s ease;
         }
@@ -308,11 +308,11 @@
 
         .search-icon {
             position: absolute;
-            left: 1.1rem;
+            left: 1.15rem;
             top: 50%;
             transform: translateY(-50%);
             color: var(--accent-color);
-            font-size: 1.2rem;
+            font-size: 1.25rem;
         }
 
         /* Category Filter Chips */
@@ -330,8 +330,8 @@
             color: var(--text-secondary);
             padding: 0.6rem 1.2rem;
             border-radius: 24px;
-            font-size: 0.88rem;
-            font-weight: 700;
+            font-size: 0.9rem;
+            font-weight: 800;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             display: inline-flex;
@@ -348,11 +348,12 @@
         }
 
         .chip-count {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.35);
             padding: 0.15rem 0.55rem;
             border-radius: 12px;
             font-size: 0.75rem;
             font-weight: 800;
+            color: #ffffff;
         }
 
         /* Main Container */
@@ -380,7 +381,7 @@
             gap: 1.5rem;
         }
 
-        /* Ultra-Enhanced 100x Glowing App Cards */
+        /* Ultra-Enhanced 100x Glowing App Cards (Crystal Clear) */
         .pwa-card {
             background: var(--card-bg);
             border: 1.5px solid var(--border-color);
@@ -420,7 +421,7 @@
             transform: translateY(-10px) scale(1.035);
             border-color: var(--accent-color);
             background: var(--card-hover);
-            box-shadow: 0 30px 60px rgba(56, 189, 248, 0.35);
+            box-shadow: 0 30px 60px rgba(56, 189, 248, 0.4);
             animation: rainbowGlowBorder 2.8s infinite ease-in-out;
         }
 
@@ -440,14 +441,14 @@
             width: 60px;
             height: 60px;
             border-radius: 20px;
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.1);
             border: 1.5px solid var(--border-color);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.12);
         }
 
         .pwa-card:hover .icon-wrapper {
@@ -467,7 +468,7 @@
             color: var(--text-secondary);
             cursor: pointer;
             padding: 8px;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             border-radius: 12px;
             transition: all 0.2s;
         }
@@ -483,7 +484,7 @@
         }
 
         .label {
-            font-size: 1.18rem;
+            font-size: 1.2rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
             letter-spacing: -0.3px;
@@ -491,12 +492,12 @@
         }
 
         .description {
-            font-size: 0.92rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
-            line-height: 1.55;
+            line-height: 1.6;
             margin-bottom: 1.4rem;
             flex: 1;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .card-footer {
@@ -514,17 +515,17 @@
         }
 
         .badge {
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             padding: 0.3rem 0.8rem;
             border-radius: 10px;
             background: var(--border-color);
             color: var(--text-primary);
-            font-weight: 700;
+            font-weight: 800;
             text-transform: uppercase;
         }
 
         .launch-hint {
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             font-weight: 800;
             color: var(--accent-color);
             display: flex;
@@ -564,11 +565,11 @@
         .news-card.featured {
             border-color: var(--accent-color);
             animation: rainbowGlowBorder 3.5s infinite ease-in-out, floatPulse3D 6s infinite ease-in-out;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.1));
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(168, 85, 247, 0.18), rgba(236, 72, 153, 0.12));
         }
 
         .news-date {
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             font-weight: 800;
             color: var(--accent-color);
             text-transform: uppercase;
@@ -578,26 +579,26 @@
         }
 
         .news-card h3 {
-            font-size: 1.42rem;
+            font-size: 1.45rem;
             font-weight: 800;
             margin-bottom: 0.85rem;
             color: var(--text-primary);
         }
 
         .news-card p {
-            font-size: 1rem;
+            font-size: 1.02rem;
             color: var(--text-secondary);
             line-height: 1.7;
             margin-bottom: 0.9rem;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .news-card ul {
             margin-left: 1.3rem;
             color: var(--text-secondary);
-            font-size: 0.98rem;
+            font-size: 1rem;
             line-height: 1.7;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .news-card li {
@@ -612,7 +613,7 @@
         }
 
         .setting-group-title {
-            font-size: 0.92rem;
+            font-size: 0.95rem;
             font-weight: 800;
             color: var(--accent-color);
             text-transform: uppercase;
@@ -636,7 +637,7 @@
         .setting-item:hover {
             background: var(--card-hover);
             border-color: var(--accent-color);
-            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.25);
         }
 
         .setting-info {
@@ -646,15 +647,15 @@
         }
 
         .setting-name {
-            font-size: 1.08rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 800;
             color: var(--text-primary);
         }
 
         .setting-desc {
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             color: var(--text-secondary);
-            font-weight: 500;
+            font-weight: 600;
         }
 
         /* Custom Toggle Switches */
@@ -705,10 +706,10 @@
             background: var(--bg-color);
             border: 1.5px solid var(--border-color);
             color: var(--text-primary);
-            padding: 0.55rem 1.1rem;
+            padding: 0.6rem 1.15rem;
             border-radius: 14px;
-            font-size: 0.92rem;
-            font-weight: 700;
+            font-size: 0.95rem;
+            font-weight: 800;
             outline: none;
             cursor: pointer;
             transition: all 0.2s;
@@ -724,7 +725,7 @@
             box-shadow: 0 0 15px var(--accent-glow);
         }
 
-        /* Floating Bottom Dock Navigation */
+        /* Floating Bottom Navigation Dock */
         .bottom-nav {
             position: fixed;
             bottom: 18px;
@@ -757,12 +758,12 @@
             padding: 8px 0;
             border-radius: 24px;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             font-weight: 800;
         }
 
         .nav-item .nav-icon {
-            font-size: 1.35rem;
+            font-size: 1.4rem;
             transition: transform 0.3s;
         }
 
@@ -785,12 +786,12 @@
             background: var(--card-bg);
             border: 1.5px solid var(--accent-color);
             color: var(--text-primary);
-            padding: 0.9rem 1.8rem;
+            padding: 0.95rem 1.9rem;
             border-radius: 18px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.4);
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 1100;
-            font-size: 0.96rem;
+            font-size: 0.98rem;
             font-weight: 800;
         }
 
@@ -804,7 +805,7 @@
             text-align: center;
             padding: 4rem 2rem;
             color: var(--text-secondary);
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .empty-state span {
@@ -998,9 +999,9 @@
                 <div class="setting-item">
                     <div class="setting-info">
                         <span class="setting-name">MIR Code Studio Ecosystem</span>
-                        <span class="setting-desc">PWA v4.4.0 (Master Masterpiece Edition) • Developed by Mubashir</span>
+                        <span class="setting-desc">PWA v4.5.0 (Master Masterpiece Edition) • Developed by Mubashir</span>
                     </div>
-                    <span style="font-size: 0.88rem; color: var(--accent-color); font-weight: 800;">10 APPS LIVE</span>
+                    <span style="font-size: 0.9rem; color: var(--accent-color); font-weight: 800;">10 APPS LIVE</span>
                 </div>
             </div>
         </section>
@@ -1144,7 +1145,7 @@
         const controlsBar = document.getElementById('controlsBar');
         const favCount = document.getElementById('favCount');
 
-        // Redirect / Version Switch Handling
+        // Redirect / Version Switch Handling (No automatic boot redirect)
         const savedRedirectFile = localStorage.getItem('mir_code_studio_redirect_file') || 'old.html';
         settingRedirectFile.value = savedRedirectFile;
 
