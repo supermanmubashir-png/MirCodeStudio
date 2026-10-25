@@ -9,12 +9,12 @@
     <style>
         :root {
             --bg-color: #030712;
-            --card-bg: rgba(17, 24, 39, 0.65);
-            --card-hover: rgba(31, 41, 55, 0.9);
-            --border-color: rgba(255, 255, 255, 0.1);
-            --text-primary: #f3f4f6;
-            --text-secondary: #9ca3af;
-            --accent-glow: rgba(56, 189, 248, 0.35);
+            --card-bg: rgba(15, 23, 42, 0.82);
+            --card-hover: rgba(30, 41, 59, 0.96);
+            --border-color: rgba(56, 189, 248, 0.22);
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --accent-glow: rgba(56, 189, 248, 0.45);
             --accent-color: #38bdf8;
             --accent-purple: #a855f7;
             --accent-pink: #ec4899;
@@ -22,14 +22,14 @@
         }
 
         [data-theme="light"] {
-            --bg-color: #f8fafc;
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --card-hover: rgba(255, 255, 255, 0.99);
-            --border-color: rgba(0, 0, 0, 0.08);
+            --bg-color: #f1f5f9;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-hover: rgba(255, 255, 255, 1);
+            --border-color: rgba(14, 165, 233, 0.25);
             --text-primary: #0f172a;
-            --text-secondary: #64748b;
-            --accent-glow: rgba(14, 165, 233, 0.28);
-            --accent-color: #0ea5e9;
+            --text-secondary: #475569;
+            --accent-glow: rgba(14, 165, 233, 0.3);
+            --accent-color: #0284c7;
             --accent-purple: #9333ea;
             --accent-pink: #db2777;
         }
@@ -38,15 +38,18 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
-        /* Continuous Dynamic Aura & Canvas Effects */
+        /* Dynamic Aura & Background Canvas */
         body {
             font-family: var(--font-family);
             background-color: var(--bg-color);
             background-image: 
-                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.18) 0%, transparent 45%),
-                radial-gradient(circle at 85% 85%, rgba(168, 85, 247, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 10% 10%, rgba(56, 189, 248, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 90% 90%, rgba(168, 85, 247, 0.18) 0%, transparent 45%),
                 radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.12) 0%, transparent 60%);
             background-attachment: fixed;
             color: var(--text-primary);
@@ -59,7 +62,6 @@
             position: relative;
         }
 
-        /* Particle Overlay Layer */
         #bgCanvas {
             position: fixed;
             top: 0;
@@ -68,26 +70,26 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.85;
+            opacity: 0.9;
         }
 
-        /* 100x Ultra-Enhanced Never-Stopping Keyframe Animations */
+        /* 100x Ultra-Enhanced Keyframe Animations */
         @keyframes rainbowGlowBorder {
             0% { 
-                border-color: rgba(56, 189, 248, 0.85); 
-                box-shadow: 0 0 25px rgba(56, 189, 248, 0.4), inset 0 0 15px rgba(56, 189, 248, 0.15); 
+                border-color: rgba(56, 189, 248, 0.9); 
+                box-shadow: 0 0 30px rgba(56, 189, 248, 0.4), inset 0 0 15px rgba(56, 189, 248, 0.15); 
             }
             33% { 
-                border-color: rgba(168, 85, 247, 0.9); 
-                box-shadow: 0 0 35px rgba(168, 85, 247, 0.5), inset 0 0 18px rgba(168, 85, 247, 0.2); 
+                border-color: rgba(168, 85, 247, 0.95); 
+                box-shadow: 0 0 40px rgba(168, 85, 247, 0.55), inset 0 0 20px rgba(168, 85, 247, 0.2); 
             }
             66% { 
-                border-color: rgba(236, 72, 153, 0.9); 
-                box-shadow: 0 0 35px rgba(236, 72, 153, 0.5), inset 0 0 18px rgba(236, 72, 153, 0.2); 
+                border-color: rgba(236, 72, 153, 0.95); 
+                box-shadow: 0 0 40px rgba(236, 72, 153, 0.55), inset 0 0 20px rgba(236, 72, 153, 0.2); 
             }
             100% { 
-                border-color: rgba(56, 189, 248, 0.85); 
-                box-shadow: 0 0 25px rgba(56, 189, 248, 0.4), inset 0 0 15px rgba(56, 189, 248, 0.15); 
+                border-color: rgba(56, 189, 248, 0.9); 
+                box-shadow: 0 0 30px rgba(56, 189, 248, 0.4), inset 0 0 15px rgba(56, 189, 248, 0.15); 
             }
         }
 
@@ -98,13 +100,13 @@
         }
 
         @keyframes floatPulse3D {
-            0%, 100% { transform: translateY(0px) rotateX(0deg) scale(1); }
-            50% { transform: translateY(-8px) rotateX(2deg) scale(1.02); }
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-6px) scale(1.015); }
         }
 
         @keyframes badgeOrbit3D {
             0% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.08) rotate(4deg); }
+            50% { transform: scale(1.06) rotate(3deg); }
             100% { transform: scale(1) rotate(0deg); }
         }
 
@@ -116,11 +118,6 @@
         @keyframes cardLightSweep {
             0% { transform: translateX(-150%) skewX(-30deg); }
             100% { transform: translateX(280%) skewX(-30deg); }
-        }
-
-        @keyframes neonPulseGlow {
-            0%, 100% { filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.6)); }
-            50% { filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.9)); }
         }
 
         /* Header & Brand Container */
@@ -156,7 +153,7 @@
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: infiniteShimmer 4s ease infinite, floatPulse3D 4s ease-in-out infinite, neonPulseGlow 3s infinite;
+            animation: infiniteShimmer 4s ease infinite, floatPulse3D 4s ease-in-out infinite;
         }
 
         .brand-info {
@@ -168,13 +165,11 @@
             font-size: 1.85rem;
             font-weight: 800;
             letter-spacing: -0.5px;
-            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-primary);
         }
 
         .credit-tag {
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             color: var(--accent-color);
             font-weight: 700;
             letter-spacing: 0.5px;
@@ -197,9 +192,8 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             font-size: 1.2rem;
-            backdrop-filter: blur(14px);
             position: relative;
             overflow: hidden;
             animation: rainbowGlowBorder 5s infinite ease-in-out;
@@ -210,53 +204,61 @@
             transform: translateY(-3px) scale(1.08);
         }
 
-        /* Festive Milestone Banner with Ultra Animations */
+        /* Ultra-Enhanced Festive Milestone Banner */
         .milestone-banner {
             width: 100%;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(168, 85, 247, 0.25), rgba(236, 72, 153, 0.22));
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(168, 85, 247, 0.28), rgba(236, 72, 153, 0.25));
             background-size: 300% 300%;
-            border: 1.5px solid rgba(56, 189, 248, 0.7);
+            border: 2px solid rgba(56, 189, 248, 0.8);
             border-radius: 22px;
-            padding: 1.1rem 1.5rem;
+            padding: 1.15rem 1.6rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 1rem;
             animation: rainbowGlowBorder 3.5s infinite ease-in-out, infiniteShimmer 5s ease infinite, floatPulse3D 3.5s infinite ease-in-out;
-            backdrop-filter: blur(16px);
-            box-shadow: 0 15px 40px rgba(56, 189, 248, 0.3);
+            box-shadow: 0 15px 45px rgba(56, 189, 248, 0.35);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .milestone-banner:hover {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 20px 60px rgba(168, 85, 247, 0.5);
+            border-color: #a855f7;
         }
 
         .milestone-banner::after {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 45%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             animation: cardLightSweep 3.5s infinite ease-in-out;
         }
 
         .milestone-left {
             display: flex;
             align-items: center;
-            gap: 0.85rem;
+            gap: 0.9rem;
         }
 
         .milestone-icon {
-            font-size: 2rem;
+            font-size: 2.2rem;
             animation: iconSpinSlow 10s linear infinite;
         }
 
         .milestone-title {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 800;
             color: var(--text-primary);
         }
 
         .milestone-subtitle {
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
+            font-weight: 500;
         }
 
         .app-count-badge {
@@ -264,10 +266,10 @@
             background-size: 200% 200%;
             color: #ffffff;
             font-weight: 800;
-            font-size: 0.9rem;
-            padding: 0.5rem 1.2rem;
+            font-size: 0.95rem;
+            padding: 0.55rem 1.3rem;
             border-radius: 30px;
-            box-shadow: 0 6px 22px rgba(56, 189, 248, 0.5);
+            box-shadow: 0 6px 25px rgba(56, 189, 248, 0.6);
             white-space: nowrap;
             animation: badgeOrbit3D 2.5s infinite ease-in-out, infiniteShimmer 4s ease infinite;
         }
@@ -287,69 +289,69 @@
 
         .search-box input {
             width: 100%;
-            padding: 0.9rem 1rem 0.9rem 2.8rem;
+            padding: 0.95rem 1rem 0.95rem 3rem;
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 18px;
             color: var(--text-primary);
-            font-size: 0.95rem;
+            font-size: 1rem;
+            font-weight: 500;
             outline: none;
-            backdrop-filter: blur(14px);
             transition: all 0.3s ease;
         }
 
         .search-box input:focus {
             border-color: var(--accent-color);
-            box-shadow: 0 0 25px var(--accent-glow);
+            box-shadow: 0 0 30px var(--accent-glow);
+            background: var(--card-hover);
         }
 
         .search-icon {
             position: absolute;
-            left: 1rem;
+            left: 1.1rem;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-secondary);
-            font-size: 1.1rem;
+            color: var(--accent-color);
+            font-size: 1.2rem;
         }
 
-        /* Category Filter Chips Grid */
+        /* Category Filter Chips */
         .category-filter {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.6rem;
+            gap: 0.65rem;
             width: 100%;
             justify-content: flex-start;
         }
 
         .filter-chip {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
+            border: 1.5px solid var(--border-color);
             color: var(--text-secondary);
-            padding: 0.55rem 1.1rem;
-            border-radius: 22px;
-            font-size: 0.85rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 24px;
+            font-size: 0.88rem;
             font-weight: 700;
             cursor: pointer;
-            backdrop-filter: blur(14px);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             display: inline-flex;
             align-items: center;
-            gap: 0.45rem;
+            gap: 0.5rem;
         }
 
         .filter-chip.active, .filter-chip:hover {
             background: linear-gradient(135deg, var(--accent-color), var(--accent-purple));
             color: #ffffff;
             border-color: transparent;
-            box-shadow: 0 5px 20px var(--accent-glow);
+            box-shadow: 0 8px 25px var(--accent-glow);
             transform: translateY(-3px) scale(1.03);
         }
 
         .chip-count {
-            background: rgba(255, 255, 255, 0.25);
-            padding: 0.12rem 0.5rem;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 0.15rem 0.55rem;
             border-radius: 12px;
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             font-weight: 800;
         }
 
@@ -375,15 +377,15 @@
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1.4rem;
+            gap: 1.5rem;
         }
 
-        /* App Cards with 100x Ultra Rainbow Glow Animations */
+        /* Ultra-Enhanced 100x Glowing App Cards */
         .pwa-card {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 1.4rem;
+            border: 1.5px solid var(--border-color);
+            border-radius: 26px;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
             text-decoration: none;
@@ -391,18 +393,14 @@
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(16px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
             animation: floatPulse3D 6s infinite ease-in-out;
         }
 
         .pwa-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at top right, var(--accent-glow), transparent 70%);
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -413,16 +411,16 @@
             content: '';
             position: absolute;
             top: 0; left: 0; width: 60%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
             opacity: 0;
             transition: opacity 0.3s;
         }
 
         .pwa-card:hover {
-            transform: translateY(-9px) scale(1.03);
+            transform: translateY(-10px) scale(1.035);
             border-color: var(--accent-color);
             background: var(--card-hover);
-            box-shadow: 0 25px 50px rgba(56, 189, 248, 0.3);
+            box-shadow: 0 30px 60px rgba(56, 189, 248, 0.35);
             animation: rainbowGlowBorder 2.8s infinite ease-in-out;
         }
 
@@ -435,27 +433,27 @@
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
-            margin-bottom: 1rem;
+            margin-bottom: 1.1rem;
         }
 
         .icon-wrapper {
-            width: 56px;
-            height: 56px;
-            border-radius: 18px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border-color);
+            width: 60px;
+            height: 60px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.5px solid var(--border-color);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.9rem;
+            font-size: 2rem;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.1);
         }
 
         .pwa-card:hover .icon-wrapper {
-            transform: scale(1.15) rotate(8deg);
+            transform: scale(1.18) rotate(8deg);
             border-color: var(--accent-color);
-            box-shadow: 0 0 20px var(--accent-glow);
+            box-shadow: 0 0 25px var(--accent-glow);
         }
 
         .card-actions {
@@ -468,9 +466,9 @@
             border: none;
             color: var(--text-secondary);
             cursor: pointer;
-            padding: 6px;
-            font-size: 1.1rem;
-            border-radius: 10px;
+            padding: 8px;
+            font-size: 1.2rem;
+            border-radius: 12px;
             transition: all 0.2s;
         }
 
@@ -481,65 +479,65 @@
 
         .action-icon-btn.favorite.active {
             color: #ef4444;
-            transform: scale(1.2);
+            transform: scale(1.25);
         }
 
         .label {
-            font-size: 1.12rem;
+            font-size: 1.18rem;
             font-weight: 800;
-            margin-bottom: 0.45rem;
+            margin-bottom: 0.5rem;
             letter-spacing: -0.3px;
+            color: var(--text-primary);
         }
 
         .description {
-            font-size: 0.88rem;
+            font-size: 0.92rem;
             color: var(--text-secondary);
-            line-height: 1.5;
-            margin-bottom: 1.35rem;
+            line-height: 1.55;
+            margin-bottom: 1.4rem;
             flex: 1;
+            font-weight: 500;
         }
 
         .card-footer {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-top: 1px solid var(--border-color);
-            padding-top: 0.85rem;
+            border-top: 1.5px solid var(--border-color);
+            padding-top: 0.95rem;
         }
 
         .badge-list {
             display: flex;
-            gap: 0.35rem;
+            gap: 0.4rem;
             flex-wrap: wrap;
         }
 
         .badge {
-            font-size: 0.68rem;
-            padding: 0.24rem 0.7rem;
-            border-radius: 8px;
+            font-size: 0.72rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 10px;
             background: var(--border-color);
-            color: var(--text-secondary);
+            color: var(--text-primary);
             font-weight: 700;
             text-transform: uppercase;
         }
 
         .launch-hint {
-            font-size: 0.84rem;
+            font-size: 0.88rem;
             font-weight: 800;
             color: var(--accent-color);
             display: flex;
             align-items: center;
             gap: 0.3rem;
-            opacity: 0.85;
-            transition: opacity 0.2s, transform 0.2s;
+            transition: transform 0.2s;
         }
 
         .pwa-card:hover .launch-hint {
-            opacity: 1;
-            transform: translateX(4px);
+            transform: translateX(5px);
         }
 
-        /* Detailed Big News Cards */
+        /* News Cards */
         .news-container {
             display: flex;
             flex-direction: column;
@@ -548,11 +546,10 @@
 
         .news-card {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 1.85rem;
-            backdrop-filter: blur(16px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+            border: 1.5px solid var(--border-color);
+            border-radius: 26px;
+            padding: 1.9rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
             transition: transform 0.3s, border-color 0.3s;
@@ -567,11 +564,11 @@
         .news-card.featured {
             border-color: var(--accent-color);
             animation: rainbowGlowBorder 3.5s infinite ease-in-out, floatPulse3D 6s infinite ease-in-out;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(168, 85, 247, 0.12), rgba(236, 72, 153, 0.08));
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.1));
         }
 
         .news-date {
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             font-weight: 800;
             color: var(--accent-color);
             text-transform: uppercase;
@@ -581,89 +578,91 @@
         }
 
         .news-card h3 {
-            font-size: 1.38rem;
+            font-size: 1.42rem;
             font-weight: 800;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.85rem;
             color: var(--text-primary);
         }
 
         .news-card p {
-            font-size: 0.98rem;
+            font-size: 1rem;
             color: var(--text-secondary);
-            line-height: 1.65;
-            margin-bottom: 0.85rem;
+            line-height: 1.7;
+            margin-bottom: 0.9rem;
+            font-weight: 500;
         }
 
         .news-card ul {
-            margin-left: 1.25rem;
+            margin-left: 1.3rem;
             color: var(--text-secondary);
-            font-size: 0.96rem;
-            line-height: 1.65;
+            font-size: 0.98rem;
+            line-height: 1.7;
+            font-weight: 500;
         }
 
         .news-card li {
-            margin-bottom: 0.45rem;
+            margin-bottom: 0.5rem;
         }
 
-        /* 18+ Comprehensive Settings Panel */
+        /* Settings Panel */
         .settings-container {
             display: flex;
             flex-direction: column;
-            gap: 1.1rem;
+            gap: 1.2rem;
         }
 
         .setting-group-title {
-            font-size: 0.88rem;
+            font-size: 0.92rem;
             font-weight: 800;
             color: var(--accent-color);
             text-transform: uppercase;
             letter-spacing: 0.6px;
-            margin-top: 1.2rem;
-            margin-bottom: 0.4rem;
+            margin-top: 1.4rem;
+            margin-bottom: 0.5rem;
             padding-left: 0.5rem;
         }
 
         .setting-item {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 1.15rem 1.4rem;
+            border: 1.5px solid var(--border-color);
+            border-radius: 22px;
+            padding: 1.25rem 1.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            backdrop-filter: blur(16px);
             transition: all 0.25s ease;
         }
 
         .setting-item:hover {
             background: var(--card-hover);
             border-color: var(--accent-color);
-            box-shadow: 0 5px 20px rgba(56, 189, 248, 0.15);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2);
         }
 
         .setting-info {
             display: flex;
             flex-direction: column;
-            gap: 0.25rem;
+            gap: 0.3rem;
         }
 
         .setting-name {
-            font-size: 1.02rem;
+            font-size: 1.08rem;
             font-weight: 700;
             color: var(--text-primary);
         }
 
         .setting-desc {
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
+            font-weight: 500;
         }
 
         /* Custom Toggle Switches */
         .switch {
             position: relative;
             display: inline-block;
-            width: 52px;
-            height: 28px;
+            width: 56px;
+            height: 30px;
         }
 
         .switch input {
@@ -678,14 +677,14 @@
             top: 0; left: 0; right: 0; bottom: 0;
             background-color: var(--border-color);
             transition: .3s;
-            border-radius: 28px;
+            border-radius: 30px;
         }
 
         .slider:before {
             position: absolute;
             content: "";
-            height: 22px;
-            width: 22px;
+            height: 24px;
+            width: 24px;
             left: 3px;
             bottom: 3px;
             background-color: white;
@@ -695,47 +694,51 @@
 
         input:checked + .slider {
             background-color: var(--accent-color);
-            box-shadow: 0 0 12px var(--accent-glow);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
         input:checked + .slider:before {
-            transform: translateX(24px);
+            transform: translateX(26px);
         }
 
-        .setting-select, .setting-btn {
+        .setting-select, .setting-btn, .setting-input {
             background: var(--bg-color);
-            border: 1px solid var(--border-color);
+            border: 1.5px solid var(--border-color);
             color: var(--text-primary);
-            padding: 0.5rem 0.95rem;
-            border-radius: 12px;
-            font-size: 0.88rem;
-            font-weight: 600;
+            padding: 0.55rem 1.1rem;
+            border-radius: 14px;
+            font-size: 0.92rem;
+            font-weight: 700;
             outline: none;
             cursor: pointer;
             transition: all 0.2s;
         }
 
-        .setting-select:focus, .setting-btn:hover {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 12px var(--accent-glow);
+        .setting-input {
+            width: 140px;
+            text-align: center;
         }
 
-        /* One UI 8.5 Floating Bottom Dock Navigation Bar */
+        .setting-select:focus, .setting-btn:hover, .setting-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* Floating Bottom Dock Navigation */
         .bottom-nav {
             position: fixed;
             bottom: 18px;
             left: 50%;
             transform: translateX(-50%);
             width: calc(100% - 32px);
-            max-width: 460px;
+            max-width: 480px;
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(25px);
-            border-radius: 32px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 34px;
             display: flex;
             justify-content: space-around;
-            padding: 8px 14px;
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+            padding: 8px 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
             z-index: 1000;
             animation: rainbowGlowBorder 4s infinite ease-in-out;
         }
@@ -752,25 +755,25 @@
             color: var(--text-secondary);
             cursor: pointer;
             padding: 8px 0;
-            border-radius: 22px;
+            border-radius: 24px;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            font-size: 0.76rem;
-            font-weight: 700;
+            font-size: 0.78rem;
+            font-weight: 800;
         }
 
         .nav-item .nav-icon {
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             transition: transform 0.3s;
         }
 
         .nav-item.active {
             background: linear-gradient(135deg, var(--accent-color), var(--accent-purple));
             color: #ffffff;
-            box-shadow: 0 4px 18px var(--accent-glow);
+            box-shadow: 0 5px 20px var(--accent-glow);
         }
 
         .nav-item.active .nav-icon {
-            transform: scale(1.18);
+            transform: scale(1.2);
         }
 
         /* Toast Notifications */
@@ -780,16 +783,15 @@
             left: 50%;
             transform: translateX(-50%) translateY(100px);
             background: var(--card-bg);
-            border: 1px solid var(--accent-color);
+            border: 1.5px solid var(--accent-color);
             color: var(--text-primary);
-            padding: 0.85rem 1.7rem;
-            border-radius: 16px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.35);
-            backdrop-filter: blur(16px);
+            padding: 0.9rem 1.8rem;
+            border-radius: 18px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 1100;
-            font-size: 0.92rem;
-            font-weight: 700;
+            font-size: 0.96rem;
+            font-weight: 800;
         }
 
         .toast.show {
@@ -802,10 +804,11 @@
             text-align: center;
             padding: 4rem 2rem;
             color: var(--text-secondary);
+            font-weight: 700;
         }
 
         .empty-state span {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             display: block;
             margin-bottom: 1rem;
             animation: floatPulse3D 3s infinite ease-in-out;
@@ -814,7 +817,7 @@
 </head>
 <body>
 
-    <!-- Particle Animation Background Canvas Layer -->
+    <!-- Particle Background Canvas Layer -->
     <canvas id="bgCanvas"></canvas>
 
     <header id="mainHeader">
@@ -831,8 +834,8 @@
             </div>
         </div>
 
-        <!-- Festive Milestone Banner with Never-Stopping Animations -->
-        <div class="milestone-banner">
+        <!-- Festive Milestone Banner -->
+        <div class="milestone-banner" id="milestoneBanner" title="Click to view Studio Status">
             <div class="milestone-left">
                 <span class="milestone-icon">🎉</span>
                 <div>
@@ -897,132 +900,24 @@
                     <span class="news-date">25-10-2026 • Sunday</span>
                     <h3>🕋 Quran Hub Launch</h3>
                     <p><strong>Quran Hub</strong> is officially live today! Offering a unique and immersive experience combining 7 different Quran reader apps into a single seamless PWA interface.</p>
-                    <p><strong>Key Highlights:</strong></p>
-                    <ul>
-                        <li>Switch effortlessly between 7 distinct Quran reader experiences.</li>
-                        <li>Optimized navigation and reading layouts for both mobile and desktop screens.</li>
-                        <li>Integrated directly under the Quran Reader and Quranic ecosystem tabs.</li>
-                    </ul>
                 </div>
 
                 <div class="news-card">
                     <span class="news-date">24-10-2026 • Saturday</span>
                     <h3>🌙 Noor Al Quran Launch</h3>
                     <p><strong>Noor Al Quran</strong> has launched as our most advanced Quran reader application to date! Packed with cutting-edge typography, deep search capabilities, and immersive reciter features.</p>
-                    <p><strong>Key Highlights:</strong></p>
-                    <ul>
-                        <li>State-of-the-art advanced Quran reading layout and tools.</li>
-                        <li>Seamless integration into the Quran Reader tab.</li>
-                    </ul>
-                </div>
-
-                <div class="news-card">
-                    <span class="news-date">22-10-2026 • Thursday</span>
-                    <h3>✨ SyncBee Stable Update Released</h3>
-                    <p><strong>SyncBee</strong> has officially received its major stable release update today! Bringing robust performance enhancements, optimized file-sync protocols, and airtight security layers backed by UtiliX AI.</p>
-                    <p><strong>What's new in this stable release:</strong></p>
-                    <ul>
-                        <li>Production-grade socket architecture for zero-latency messaging.</li>
-                        <li>Optimized large file transfers with improved resume capabilities.</li>
-                        <li>Refined UI aesthetics fully integrated with MIR Code Studio design language.</li>
-                    </ul>
-                </div>
-
-                <div class="news-card">
-                    <span class="news-date">20-10-2026 • Tuesday</span>
-                    <h3>🚀 SyncBee Protocol & Performance Update</h3>
-                    <p><strong>SyncBee</strong> has received an advanced maintenance update today, optimizing real-time socket connections and file streaming throughput across all client devices.</p>
-                    <p><strong>Update Highlights:</strong></p>
-                    <ul>
-                        <li>Enhanced WebRTC file transfer stability for larger attachments.</li>
-                        <li>Reduced memory consumption during active background chat polling.</li>
-                        <li>Refined UI response states when communicating via UtiliX backend pipelines.</li>
-                    </ul>
                 </div>
 
                 <div class="news-card">
                     <span class="news-date">18-10-2026 • Sunday</span>
                     <h3>💬 SyncBee Chat & File Sending App Launched</h3>
-                    <p><strong>SyncBee</strong> is now live! Designed as a seamless chatting and file-sending application, SyncBee is supercharged by <strong>UtiliX</strong> to deliver lightning-fast peer messaging, intelligent file sharing, and automated context organization.</p>
-                    <p><strong>Key features of SyncBee:</strong></p>
-                    <ul>
-                        <li>Real-time chat and high-speed file transfers directly through web containers.</li>
-                        <li>UtiliX AI-powered message assistance and smart file search protocols.</li>
-                        <li>Integrated cleanly into the MIR Code Studio ecosystem for rapid accessibility.</li>
-                    </ul>
-                </div>
-
-                <div class="news-card">
-                    <span class="news-date">13-October-2026 • Tuesday</span>
-                    <h3>📝 Smart Notes Now Powered by UtiliX AI</h3>
-                    <p><strong>Smart Notes</strong> has received a game-changing integration! It is now fully powered by <strong>UtiliX</strong>, bringing intelligent AI summarization, automatic categorization, and smart doubt clarification directly into your note-taking workflow.</p>
-                    <p><strong>What this integration brings:</strong></p>
-                    <ul>
-                        <li>Instant AI text correction, formatting, and smart summarization.</li>
-                        <li>Automated tagging and organization powered by UtiliX.</li>
-                        <li>Moved under the AI tab for quick, centralized ecosystem access.</li>
-                    </ul>
+                    <p><strong>SyncBee</strong> is now live! Designed as a seamless chatting and file-sending application, SyncBee is supercharged by <strong>UtiliX</strong> to deliver lightning-fast peer messaging and file sharing.</p>
                 </div>
 
                 <div class="news-card">
                     <span class="news-date">12-October-2026 • Monday</span>
                     <h3>⚡ UtiliX AI Launch & Dedicated AI Tab Integration</h3>
-                    <p><strong>UtiliX</strong> has officially launched today as the best and most powerful AI for daily tasks and doubts! Alongside this release, we have introduced a dedicated <strong>AI tab</strong> in MIR Code Studio, housing both UtiliX and AyahAI for lightning-fast access.</p>
-                    <p><strong>What is new in this release:</strong></p>
-                    <ul>
-                        <li>Dedicated AI filtering category tab for all intelligent assistant modules.</li>
-                        <li>UtiliX integration for instant daily problem-solving, doubts clarification, and smart task management.</li>
-                        <li>Another top-secret next-generation AI model is currently queued and waiting for its upcoming launch.</li>
-                    </ul>
-                </div>
-
-                <div class="news-card">
-                    <span class="news-date">12-October-2026 • Monday</span>
-                    <h3>✨ MIR Code Studio Ecosystem Update</h3>
-                    <p><strong>MIR Code Studio</strong> has received a massive feature update today! As the central hub uniting all your custom progressive web applications, this update brings enhanced performance, streamlined navigation, and powerful customization tools directly to your fingertips.</p>
-                    <p><strong>What is new in this update:</strong></p>
-                    <ul>
-                        <li><strong>One UI 8.5 Style Navigation:</strong> Enjoy fluid tab-switching between Apps, News, and Settings with a modern floating dock.</li>
-                        <li><strong>Expanded Settings Panel:</strong> Over 18+ real configuration toggles for theme glassmorphism, caching, and offline data sync.</li>
-                        <li><strong>Unified Hub Architecture:</strong> Quick-launch shortcuts for all 10 core progressive web applications.</li>
-                        <li><strong>Performance Enhancements:</strong> Optimized service worker caching and instant local storage state retention.</li>
-                    </ul>
-                </div>
-
-                <div class="news-card">
-                    <span class="news-date">11-October-2026 • Sunday</span>
-                    <h3>🚀 New AIs Are Launching Soon - Be Ready!</h3>
-                    <p>New ais are launching soon. Be ready! We are scaling up our infrastructure to support multi-turn conversational agents across all studio modules.</p>
-                    <p><strong>Upcoming Highlights:</strong></p>
-                    <ul>
-                        <li>Advanced local LLM integration for ultra-low latency response times.</li>
-                        <li>Context-aware assistance tailored for developer workflows and general queries.</li>
-                        <li>Seamless cross-device synchronization of user preferences and bookmarks.</li>
-                    </ul>
-                </div>
-
-                <div class="news-card">
-                    <span class="news-date">10-October-2026 • Saturday</span>
-                    <h3>📖 Quran Reader+ NEW UPDATE</h3>
-                    <p>Quran Reader+ is updated to 6.7.1 with AyahAI. Updates and chanalog will be updated soon.</p>
-                    <p><strong>Key Improvements:</strong></p>
-                    <ul>
-                        <li>Direct integration of AyahAI for instant contextual Quranic insights.</li>
-                        <li>Enhanced audio reciter queue stability and memory management.</li>
-                        <li>Refined typography rendering for optimal readability on mobile PWA displays.</li>
-                    </ul>
-                </div>
-
-                <div class="news-card">
-                    <span class="news-date">09-October-2026 • Friday</span>
-                    <h3>🤖 AyahAI Launched</h3>
-                    <p>AyahAI launched as the flagship conversational intelligence engine built specifically for profound Islamic scholarship and general knowledge exploration.</p>
-                    <p><strong>Core Capabilities:</strong></p>
-                    <ul>
-                        <li>Unmatched accuracy in referencing Quranic verses and Hadith collections.</li>
-                        <li>Robust multilingual support for global accessibility.</li>
-                        <li>Lightning-fast PWA container loading without external latency overhead.</li>
-                    </ul>
+                    <p><strong>UtiliX</strong> has officially launched today as the best and most powerful AI for daily tasks and doubts! Alongside this release, we have introduced a dedicated <strong>AI tab</strong> in MIR Code Studio.</p>
                 </div>
             </div>
         </section>
@@ -1030,17 +925,22 @@
         <!-- SETTINGS TAB VIEW -->
         <section id="settingsView" class="view-section">
             <div class="settings-container">
-                <div class="setting-group-title">Milestone & Layout Preference</div>
+                <div class="setting-group-title">Navigation & Version Switching</div>
 
                 <div class="setting-item">
                     <div class="setting-info">
-                        <span class="setting-name">10 Apps Celebration Mode</span>
-                        <span class="setting-desc">Toggle celebration animations, floating particles & milestone banner</span>
+                        <span class="setting-name">Switch to Classic Version (old.html)</span>
+                        <span class="setting-desc">Switch back to the classic layout instantly</span>
                     </div>
-                    <label class="switch">
-                        <input type="checkbox" id="settingCelebration" checked>
-                        <span class="slider"></span>
-                    </label>
+                    <button class="setting-btn" id="switchToOldBtn" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-color); border-color: var(--accent-color);">Switch to old.html</button>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Milestone Banner Target File</span>
+                        <span class="setting-desc">File/page to open when tapping the milestone banner</span>
+                    </div>
+                    <input type="text" class="setting-input" id="settingRedirectFile" value="old.html">
                 </div>
 
                 <div class="setting-group-title">Visual & Theme Customization</div>
@@ -1067,125 +967,7 @@
                     </label>
                 </div>
 
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <span class="setting-name">Rainbow Border Glowing</span>
-                        <span class="setting-desc">Continuous never-stopping border glow on cards and dock</span>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="settingBorderGlow" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
-
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <span class="setting-name">Glassmorphism Blur Depth</span>
-                        <span class="setting-desc">Adjust background glass blur intensity across containers</span>
-                    </div>
-                    <select class="setting-select" id="settingBlur">
-                        <option value="ultra">Ultra Blur (25px)</option>
-                        <option value="high" selected>Balanced Blur (14px)</option>
-                        <option value="subtle">Subtle Blur (6px)</option>
-                        <option value="none">Disabled</option>
-                    </select>
-                </div>
-
-                <div class="setting-group-title">Animation & Interactive Effects</div>
-
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <span class="setting-name">3D Hover Elevation</span>
-                        <span class="setting-desc">Enable dynamic floating tilt on mouse card hover</span>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="settingHover3D" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
-
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <span class="setting-name">Shimmer Light Sweeps</span>
-                        <span class="setting-desc">Continuous ambient light sweep animations across banners</span>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="settingShimmer" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
-
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <span class="setting-name">Card Floating Pulsation</span>
-                        <span class="setting-desc">Never-stopping smooth floating pulsation on app cards</span>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="settingCardPulse" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
-
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <span class="setting-name">Haptic Vibration Touch</span>
-                        <span class="setting-desc">Provide physical haptic feedback on button clicks on supported mobile devices</span>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="settingHaptic" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
-
-                <div class="setting-group-title">App Launch & Navigation Behavior</div>
-
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <span class="setting-name">Launch Link Target</span>
-                        <span class="setting-desc">Choose how PWAs open when clicked from dashboard</span>
-                    </div>
-                    <select class="setting-select" id="settingTarget">
-                        <option value="blank" selected>New Window / Tab (_blank)</option>
-                        <option value="self">Current Window Frame</option>
-                    </select>
-                </div>
-
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <span class="setting-name">Auto-Launch Most Played App</span>
-                        <span class="setting-desc">Automatically launch your primary app on studio startup</span>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="settingAutoLaunch">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <span class="setting-name">Default Startup Filter</span>
-                        <span class="setting-desc">Select initial app view category on studio load</span>
-                    </div>
-                    <select class="setting-select" id="settingDefaultCategory">
-                        <option value="all" selected>All Apps</option>
-                        <option value="favorites">⭐ Favorites Only</option>
-                        <option value="ai">🤖 AI Apps</option>
-                        <option value="quran-reader">📖 Quran Readers</option>
-                    </select>
-                </div>
-
                 <div class="setting-group-title">Performance & Data Cache</div>
-
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <span class="setting-name">Service Worker Aggressive Cache</span>
-                        <span class="setting-desc">Pre-pin offline web app assets into memory</span>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="settingCache" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
 
                 <div class="setting-item">
                     <div class="setting-info">
@@ -1216,15 +998,15 @@
                 <div class="setting-item">
                     <div class="setting-info">
                         <span class="setting-name">MIR Code Studio Ecosystem</span>
-                        <span class="setting-desc">PWA v4.3.0 (Master Edition) • Developed by Mubashir</span>
+                        <span class="setting-desc">PWA v4.4.0 (Master Masterpiece Edition) • Developed by Mubashir</span>
                     </div>
-                    <span style="font-size: 0.85rem; color: var(--accent-color); font-weight: 800;">10 APPS LIVE</span>
+                    <span style="font-size: 0.88rem; color: var(--accent-color); font-weight: 800;">10 APPS LIVE</span>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- One UI 8.5 Style Bottom Floating Navigation Dock -->
+    <!-- Floating Bottom Navigation Dock -->
     <nav class="bottom-nav">
         <button class="nav-item active" data-tab="apps">
             <span class="nav-icon">📱</span>
@@ -1244,12 +1026,6 @@
     <div class="toast" id="toast">Action completed successfully</div>
 
     <script>
-        // Check celebration preference immediately on boot
-        const savedCelebrationMode = localStorage.getItem('mir_code_studio_celebration');
-        if (savedCelebrationMode === 'off') {
-            window.location.href = 'old.html';
-        }
-
         // 10 Successful Apps Master Dataset
         const defaultApps = [
             {
@@ -1360,25 +1136,36 @@
         const categoryFilter = document.getElementById('categoryFilter');
         const themeToggle = document.getElementById('themeToggle');
         const settingThemeToggle = document.getElementById('settingThemeToggle');
-        const settingCelebration = document.getElementById('settingCelebration');
+        const settingRedirectFile = document.getElementById('settingRedirectFile');
+        const milestoneBanner = document.getElementById('milestoneBanner');
+        const switchToOldBtn = document.getElementById('switchToOldBtn');
         const toast = document.getElementById('toast');
         const headerTitle = document.getElementById('headerTitle');
         const controlsBar = document.getElementById('controlsBar');
         const favCount = document.getElementById('favCount');
 
-        // Celebration Mode Toggle Handler
-        settingCelebration.checked = savedCelebrationMode !== 'off';
-        settingCelebration.addEventListener('change', (e) => {
-            if (e.target.checked) {
-                localStorage.setItem('mir_code_studio_celebration', 'on');
-                showToast('10 Apps Celebration Mode Enabled');
-            } else {
-                localStorage.setItem('mir_code_studio_celebration', 'off');
-                showToast('Preference Saved: Celebration OFF');
-                setTimeout(() => {
-                    window.location.href = 'old.html';
-                }, 800);
-            }
+        // Redirect / Version Switch Handling
+        const savedRedirectFile = localStorage.getItem('mir_code_studio_redirect_file') || 'old.html';
+        settingRedirectFile.value = savedRedirectFile;
+
+        settingRedirectFile.addEventListener('input', (e) => {
+            const val = e.target.value.trim() || 'old.html';
+            localStorage.setItem('mir_code_studio_redirect_file', val);
+        });
+
+        milestoneBanner.addEventListener('click', () => {
+            const targetFile = localStorage.getItem('mir_code_studio_redirect_file') || 'old.html';
+            showToast(`Redirecting to ${targetFile}...`);
+            setTimeout(() => {
+                window.location.href = targetFile;
+            }, 600);
+        });
+
+        switchToOldBtn.addEventListener('click', () => {
+            showToast('Switching to old.html...');
+            setTimeout(() => {
+                window.location.href = 'old.html';
+            }, 600);
         });
 
         // Tab Navigation Logic
@@ -1582,10 +1369,10 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2.5 + 0.5;
+                this.size = Math.random() * 2.5 + 0.8;
                 this.speedX = Math.random() * 0.6 - 0.3;
                 this.speedY = Math.random() * -0.6 - 0.15;
-                this.opacity = Math.random() * 0.7 + 0.2;
+                this.opacity = Math.random() * 0.8 + 0.2;
             }
             update() {
                 this.x += this.speedX;
@@ -1601,7 +1388,7 @@
             }
         }
 
-        for (let i = 0; i < 55; i++) {
+        for (let i = 0; i < 60; i++) {
             particles.push(new Particle());
         }
 
