@@ -54,7 +54,7 @@
 
         /* Header & Navigation */
         header {
-            padding: 2.5rem 1.5rem 1.5rem;
+            padding: 2.5rem 1.5rem 1rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -84,6 +84,11 @@
             -webkit-text-fill-color: transparent;
         }
 
+        .brand-info {
+            display: flex;
+            flex-direction: column;
+        }
+
         h1 {
             font-size: 1.6rem;
             font-weight: 800;
@@ -91,6 +96,13 @@
             background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        .credit-tag {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: 0.3px;
         }
 
         .header-actions {
@@ -164,7 +176,7 @@
             display: flex;
             gap: 0.5rem;
             overflow-x: auto;
-            padding-bottom: 4px;
+            padding-bottom: 0px;
         }
 
         .filter-chip {
@@ -598,7 +610,10 @@
         <div class="header-top">
             <div class="brand">
                 <span class="brand-logo">💻</span>
-                <h1 id="headerTitle">MIR Code Studio</h1>
+                <div class="brand-info">
+                    <h1 id="headerTitle">MIR Code Studio</h1>
+                    <span class="credit-tag">Made by Mubashir</span>
+                </div>
             </div>
             <div class="header-actions">
                 <button class="icon-btn" id="themeToggle" title="Toggle Theme">🌓</button>
@@ -614,8 +629,11 @@
                 <button class="filter-chip active" data-category="all">All Apps</button>
                 <button class="filter-chip" data-category="favorites">⭐ Favorites</button>
                 <button class="filter-chip" data-category="ai">🤖 AI</button>
-                <button class="filter-chip" data-category="productivity">Productivity</button>
-                <button class="filter-chip" data-category="system">System OS</button>
+                <button class="filter-chip" data-category="speedometer">🏎️ Speedometer</button>
+                <button class="filter-chip" data-category="os">💻 OS</button>
+                <button class="filter-chip" data-category="quranic">📖 Quranic</button>
+                <button class="filter-chip" data-category="quran-reader">📖 Quran Reader</button>
+                <button class="filter-chip" data-category="social">💬 Social</button>
             </div>
         </div>
     </header>
@@ -631,6 +649,65 @@
         <!-- NEWS TAB VIEW -->
         <section id="newsView" class="view-section">
             <div class="news-container">
+                <div class="news-card">
+                    <span class="news-date">25-10-2026 • Sunday</span>
+                    <h3>🕋 Quran Hub Launch</h3>
+                    <p><strong>Quran Hub</strong> is officially live today! Offering a unique and immersive experience combining 7 different Quran reader apps into a single seamless PWA interface.</p>
+                    <p><strong>Highlights:</strong></p>
+                    <ul>
+                        <li>Switch effortlessly between 7 different Quran reader experiences.</li>
+                        <li>Optimized navigation and reading layouts for both mobile and desktop.</li>
+                        <li>Added directly under the Quran Reader and Quranic ecosystem tabs.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">24-10-2026 • Saturday</span>
+                    <h3>🌙 Noor Al Quran Launch</h3>
+                    <p><strong>Noor Al Quran</strong> has launched as our most advanced Quran reader application to date! Packed with cutting-edge typography, deep search capabilities, and immersive reciter features.</p>
+                    <p><strong>Highlights:</strong></p>
+                    <ul>
+                        <li>State-of-the-art advanced Quran reading layout and tools.</li>
+                        <li>Seamless integration into the Quran Reader tab.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">22-10-2026 • Thursday</span>
+                    <h3>✨ SyncBee Stable Update Released</h3>
+                    <p><strong>SyncBee</strong> has officially received its major stable release update today! Bringing robust performance enhancements, optimized file-sync protocols, and airtight security layers backed by UtiliX AI.</p>
+                    <p><strong>What's new in this stable release:</strong></p>
+                    <ul>
+                        <li>Production-grade socket architecture for zero-latency messaging.</li>
+                        <li>Optimized large file transfers with improved resume capabilities.</li>
+                        <li>Refined UI aesthetics fully integrated with MIR Code Studio design language.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">20-10-2026 • Tuesday</span>
+                    <h3>🚀 SyncBee Protocol & Performance Update</h3>
+                    <p><strong>SyncBee</strong> has received an advanced maintenance update today, optimizing real-time socket connections and file streaming throughput across all client devices.</p>
+                    <p><strong>Update Highlights:</strong></p>
+                    <ul>
+                        <li>Enhanced WebRTC file transfer stability for larger attachments.</li>
+                        <li>Reduced memory consumption during active background chat polling.</li>
+                        <li>Refined UI response states when communicating via UtiliX backend pipelines.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">18-10-2026 • Sunday</span>
+                    <h3>💬 SyncBee Chat & File Sending App Launched</h3>
+                    <p><strong>SyncBee</strong> is now live! Designed as a seamless chatting and file-sending application, SyncBee is supercharged by <strong>UtiliX</strong> to deliver lightning-fast peer messaging, intelligent file sharing, and automated context organization.</p>
+                    <p><strong>Key features of SyncBee:</strong></p>
+                    <ul>
+                        <li>Real-time chat and high-speed file transfers directly through web containers.</li>
+                        <li>UtiliX AI-powered message assistance and smart file search protocols.</li>
+                        <li>Integrated cleanly into the MIR Code Studio AI tab for rapid accessibility.</li>
+                    </ul>
+                </div>
+
                 <div class="news-card">
                     <span class="news-date">13-October-2026 • Tuesday</span>
                     <h3>📝 Smart Notes Now Powered by UtiliX AI</h3>
@@ -663,7 +740,7 @@
                     <ul>
                         <li><strong>One UI 8.5 Style Navigation:</strong> Enjoy fluid tab-switching between Apps, News, and Settings with a modern floating dock.</li>
                         <li><strong>Expanded Settings Panel:</strong> Over 10+ real configuration toggles for theme glassmorphism, caching, and offline data sync.</li>
-                        <li><strong>Unified Hub Architecture:</strong> Quick-launch shortcuts for UtiliX, AyahAI, SmartNotes, Quraan-Pro, Windows12, Speedometer, and Speedometer+.</li>
+                        <li><strong>Unified Hub Architecture:</strong> Quick-launch shortcuts for SyncBee, UtiliX, AyahAI, SmartNotes, Quran Reader+, Windows 12, Speedometer, and Speedometer+.</li>
                         <li><strong>Performance Enhancements:</strong> Optimized service worker caching and instant local storage state retention.</li>
                     </ul>
                 </div>
@@ -683,7 +760,7 @@
                 <div class="news-card">
                     <span class="news-date">10-October-2026 • Saturday</span>
                     <h3>📖 Quran Reader+ NEW UPDATE</h3>
-                    <p>Quran reader+ is updated to 6.7.1 with AyahAI. Updates and chanalog will be updated soon.</p>
+                    <p>Quran Reader+ is updated to 6.7.1 with AyahAI. Updates and chanalog will be updated soon.</p>
                     <p><strong>Key Improvements:</strong></p>
                     <ul>
                         <li>Direct integration of AyahAI for instant contextual Quranic insights.</li>
@@ -848,7 +925,7 @@
                 <div class="setting-item">
                     <div class="setting-info">
                         <span class="setting-name">Studio Version</span>
-                        <span class="setting-desc">MIR Code Studio PWA v2.9.2 (Stable)</span>
+                        <span class="setting-desc">MIR Code Studio PWA v3.5.1 (Stable) • Made by Mubashir</span>
                     </div>
                     <span style="font-size: 0.85rem; color: var(--accent-color); font-weight: 700;">Up to date</span>
                 </div>
@@ -876,15 +953,24 @@
     <div class="toast" id="toast">Action completed successfully</div>
 
     <script>
-        // Default Apps Data (Smart Notes moved to AI tab and powered by UtiliX)
+        // Default Apps Data with updated categories and URLs
         const defaultApps = [
+            {
+                id: 'syncbee',
+                title: 'SYNCBEE',
+                url: 'https://supermanmubashir-png.github.io/SyncBee',
+                icon: '💬',
+                description: 'Chatting and file sending app powered by UtiliX',
+                categories: ['ai', 'social'],
+                favorite: false
+            },
             {
                 id: 'utilix',
                 title: 'UTILIX',
                 url: 'https://supermanmubashir-png.github.io/UtiliX',
                 icon: '⚡',
                 description: 'Best and most powerful ai for daily tasks and doubts',
-                category: 'ai',
+                categories: ['ai'],
                 favorite: false
             },
             {
@@ -893,7 +979,34 @@
                 url: 'https://supermanmubashir-png.github.io/AyahAI/',
                 icon: '🤖',
                 description: 'Most powerful AI in islamic and general topics',
-                category: 'ai',
+                categories: ['ai', 'quranic'],
+                favorite: false
+            },
+            {
+                id: 'quran-reader-plus',
+                title: 'QURAN READER+',
+                url: 'https://supermanmubashir-png.github.io/Quraan-Pro',
+                icon: '📖',
+                description: 'Digital Quran reading experience powered by AyahAI',
+                categories: ['ai', 'quranic', 'quran-reader'],
+                favorite: false
+            },
+            {
+                id: 'quran-hub',
+                title: 'QURAN HUB',
+                url: 'https://supermanmubashir-png.github.io/QuraanHub',
+                icon: '🕋',
+                description: '7 different Quran reader apps experience',
+                categories: ['quranic', 'quran-reader'],
+                favorite: false
+            },
+            {
+                id: 'noor-al-quran',
+                title: 'NOOR AL QURAN',
+                url: 'https://supermanmubashir-png.github.io/NoorAlQuraan/',
+                icon: '🌙',
+                description: 'Most advanced Quran reader',
+                categories: ['quranic', 'quran-reader'],
                 favorite: false
             },
             {
@@ -902,25 +1015,16 @@
                 url: 'https://supermanmubashir-png.github.io/SmartNotes',
                 icon: '📝',
                 description: 'Quick and organized note-taking tool powered by UtiliX AI',
-                category: 'ai',
-                favorite: false
-            },
-            {
-                id: 'quraan-pro',
-                title: 'QURAAN-PRO',
-                url: 'https://supermanmubashir-png.github.io/Quraan-Pro',
-                icon: '📖',
-                description: 'Digital Quran reading and audio experience',
-                category: 'productivity',
+                categories: ['ai'],
                 favorite: false
             },
             {
                 id: 'windows-12',
-                title: 'WINDOWS12',
+                title: 'WINDOWS 12',
                 url: 'https://supermanmubashir-png.github.io/Windows12/',
                 icon: '💻',
                 description: 'Futuristic desktop OS web interface',
-                category: 'system',
+                categories: ['os'],
                 favorite: false
             },
             {
@@ -929,7 +1033,7 @@
                 url: 'https://supermanmubashir-png.github.io/Speedometer/',
                 icon: '🏎️',
                 description: 'Real-time speed and travel tracking tool',
-                category: 'productivity',
+                categories: ['speedometer'],
                 favorite: false
             },
             {
@@ -938,7 +1042,7 @@
                 url: 'https://supermanmubashir-png.github.io/SpeedometerPlus/',
                 icon: '🚀',
                 description: 'Advanced real-time speed and travel tracking tool',
-                category: 'productivity',
+                categories: ['speedometer'],
                 favorite: false
             }
         ];
@@ -946,11 +1050,13 @@
         // State Management with automatic app merging
         let savedApps = JSON.parse(localStorage.getItem('mir_code_studio_apps')) || [];
         let apps = defaultApps.map(defApp => {
-            const existing = savedApps.find(s => s.id === defApp.id);
-            return existing ? { ...defApp, favorite: existing.favorite, category: defApp.category } : defApp;
+            const existing = savedApps.find(s => s.id === defApp.id || (defApp.id === 'syncbee' && s.id === 'connectly') || (defApp.id === 'quran-reader-plus' && s.id === 'quraan-pro'));
+            return existing ? { ...defApp, favorite: existing.favorite, categories: defApp.categories } : defApp;
         });
         
         savedApps.forEach(s => {
+            if (s.id === 'connectly') s.id = 'syncbee';
+            if (s.id === 'quraan-pro') s.id = 'quran-reader-plus';
             if (!apps.some(a => a.id === s.id)) {
                 apps.push(s);
             }
@@ -1027,12 +1133,14 @@
                 const matchesSearch = app.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                                       app.description.toLowerCase().includes(searchQuery.toLowerCase());
                 
+                let matchesCategory = true;
                 if (currentFilter === 'favorites') {
-                    return matchesSearch && app.favorite;
+                    matchesCategory = app.favorite;
                 } else if (currentFilter !== 'all') {
-                    return matchesSearch && app.category === currentFilter;
+                    const cats = app.categories || [app.category];
+                    matchesCategory = cats.includes(currentFilter);
                 }
-                return matchesSearch;
+                return matchesSearch && matchesCategory;
             });
 
             if (filtered.length === 0) {
@@ -1050,6 +1158,7 @@
                 card.href = app.url;
                 card.target = '_blank';
                 card.className = 'pwa-card';
+                const catBadge = app.categories ? app.categories.join(' • ') : (app.category || 'app');
                 card.innerHTML = `
                     <div class="card-header">
                         <div class="icon-wrapper">${app.icon}</div>
@@ -1065,7 +1174,7 @@
                     <div class="label">${app.title}</div>
                     <div class="description">${app.description}</div>
                     <div class="card-footer">
-                        <span class="badge">${app.category}</span>
+                        <span class="badge">${catBadge}</span>
                         <span class="launch-hint">Launch ↗</span>
                     </div>
                 `;
