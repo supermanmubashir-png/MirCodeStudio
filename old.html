@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIR Code Studio - Classic Edition</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#030712">
+    <style>
+        :root {
+            --bg-color: #030712;
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --card-hover: rgba(31, 41, 55, 0.85);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-glow: rgba(56, 189, 248, 0.2);
+            --accent-color: #38bdf8;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-hover: rgba(255, 255, 255, 1);
+            --border-color: rgba(0, 0, 0, 0.08);
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --accent-glow: rgba(14, 165, 233, 0.15);
+            --accent-color: #0ea5e9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Continuous Never-Stopping Animations */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(0.5deg); }
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 0 20px rgba(56, 189, 248, 0.15); }
+            50% { border-color: rgba(168, 85, 247, 0.7); box-shadow: 0 0 30px rgba(168, 85, 247, 0.35); }
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes shimmerGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 60%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.3s ease;
+            padding-bottom: 90px;
+        }
+
+        /* Header & Navigation */
+        header {
+            padding: 2.5rem 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.25rem;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .brand-logo {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #38bdf8, #a855f7, #ec4899);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerGradient 6s ease infinite;
+        }
+
+        .brand-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .credit-tag {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        /* Festive Milestone Banner with Never-Stopping Animation & Clickable Redirect */
+        .milestone-banner {
+            width: 100%;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.12));
+            background-size: 200% 200%;
+            border: 1px solid var(--accent-color);
+            border-radius: 16px;
+            padding: 0.9rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            animation: borderGlow 3s infinite ease-in-out, badgePulse 4s infinite ease-in-out, shimmerGradient 8s ease infinite;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .milestone-banner:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(56, 189, 248, 0.3);
+            border-color: #a855f7;
+        }
+
+        .milestone-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .milestone-icon {
+            font-size: 1.6rem;
+            animation: floatSlow 3s infinite ease-in-out;
+        }
+
+        .milestone-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .milestone-subtitle {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+        }
+
+        .app-count-badge {
+            background: linear-gradient(135deg, #38bdf8, #a855f7);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 0.4rem 0.9rem;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+            white-space: nowrap;
+            animation: badgePulse 2s infinite ease-in-out;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .icon-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1.1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .icon-btn:hover {
+            background: var(--card-hover);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Search & Filter Bar */
+        .controls-bar {
+            display: flex;
+            gap: 0.75rem;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.6rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            outline: none;
+            backdrop-filter: blur(10px);
+            transition: all 0.2s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .category-filter {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0px;
+        }
+
+        .filter-chip {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            white-space: nowrap;
+            backdrop-filter: blur(10px);
+            transition: all 0.2s ease;
+        }
+
+        .filter-chip.active, .filter-chip:hover {
+            background: var(--accent-color);
+            color: #ffffff;
+            border-color: transparent;
+        }
+
+        /* Views / Tabs Container */
+        main {
+            flex: 1;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 1rem 1.5rem 3rem;
+        }
+
+        .view-section {
+            display: none;
+        }
+
+        .view-section.active {
+            display: block;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.25rem;
+        }
+
+        /* App Card with Never-Stopping Subtle Float */
+        .pwa-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .pwa-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, var(--accent-glow), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .pwa-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--accent-color);
+            background: var(--card-hover);
+            box-shadow: 0 20px 40px rgba(56, 189, 248, 0.2);
+        }
+
+        .pwa-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .icon-wrapper {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            transition: transform 0.3s ease;
+        }
+
+        .pwa-card:hover .icon-wrapper {
+            transform: scale(1.1) rotate(3deg);
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .action-icon-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 5px;
+            font-size: 1rem;
+            border-radius: 8px;
+            transition: color 0.2s, background 0.2s;
+        }
+
+        .action-icon-btn:hover {
+            color: var(--accent-color);
+            background: var(--border-color);
+        }
+
+        .action-icon-btn.favorite.active {
+            color: #ef4444;
+        }
+
+        .label {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.3px;
+        }
+
+        .description {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            margin-bottom: 1.25rem;
+            flex: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.75rem;
+        }
+
+        .badge {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            background: var(--border-color);
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .launch-hint {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .pwa-card:hover .launch-hint {
+            opacity: 1;
+        }
+
+        /* News Tab Styling */
+        .news-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .news-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.75rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .news-date {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .news-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .news-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .news-card ul {
+            margin-left: 1.25rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .news-card li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* Settings Tab Styling */
+        .settings-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .setting-group-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            padding-left: 0.5rem;
+        }
+
+        .setting-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(12px);
+            transition: background 0.2s;
+        }
+
+        .setting-item:hover {
+            background: var(--card-hover);
+        }
+
+        .setting-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .setting-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .setting-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Custom Toggle Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--border-color);
+            transition: .3s;
+            border-radius: 26px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--accent-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        .setting-select, .setting-btn {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .setting-input {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            outline: none;
+            width: 130px;
+            text-align: center;
+        }
+
+        .setting-input:focus {
+            border-color: var(--accent-color);
+        }
+
+        /* One UI 8.5 Style Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 32px);
+            max-width: 440px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 8px 0;
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .nav-item .nav-icon {
+            font-size: 1.25rem;
+            transition: transform 0.3s;
+        }
+
+        .nav-item.active {
+            background: var(--accent-color);
+            color: #ffffff;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .nav-item.active .nav-icon {
+            transform: scale(1.1);
+        }
+
+        /* Empty State */
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-state span {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 95px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1100;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <header id="mainHeader">
+        <div class="header-top">
+            <div class="brand">
+                <span class="brand-logo">💻</span>
+                <div class="brand-info">
+                    <h1 id="headerTitle">MIR Code Studio</h1>
+                    <span class="credit-tag">Made by Mubashir</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" id="themeToggle" title="Toggle Theme">🌓</button>
+            </div>
+        </div>
+
+        <!-- Festive Milestone Banner with Clickable Redirect -->
+        <div class="milestone-banner" id="milestoneBanner" title="Click to open Ecosystem Main Hub">
+            <div class="milestone-left">
+                <span class="milestone-icon">🎉</span>
+                <div>
+                    <div class="milestone-title">Ecosystem Milestone Achieved</div>
+                    <div class="milestone-subtitle">All progressive web apps successfully launched & active</div>
+                </div>
+            </div>
+            <div class="app-count-badge">🚀 10 Apps Live</div>
+        </div>
+
+        <div class="controls-bar" id="controlsBar">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Search your PWAs...">
+            </div>
+            <div class="category-filter" id="categoryFilter">
+                <button class="filter-chip active" data-category="all">All Apps</button>
+                <button class="filter-chip" data-category="favorites">⭐ Favorites</button>
+                <button class="filter-chip" data-category="ai">🤖 AI</button>
+                <button class="filter-chip" data-category="speedometer">🏎️ Speedometer</button>
+                <button class="filter-chip" data-category="os">💻 OS</button>
+                <button class="filter-chip" data-category="quranic">📖 Quranic</button>
+                <button class="filter-chip" data-category="quran-reader">📖 Quran Reader</button>
+                <button class="filter-chip" data-category="social">💬 Social</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- APPS TAB VIEW -->
+        <section id="appsView" class="view-section active">
+            <div class="grid-container" id="appGrid">
+                <!-- Dynamically populated via JavaScript -->
+            </div>
+        </section>
+
+        <!-- NEWS TAB VIEW -->
+        <section id="newsView" class="view-section">
+            <div class="news-container">
+                <div class="news-card">
+                    <span class="news-date">25-10-2026 • Sunday</span>
+                    <h3>🕋 Quran Hub Launch</h3>
+                    <p><strong>Quran Hub</strong> is officially live today! Offering a unique and immersive experience combining 7 different Quran reader apps into a single seamless PWA interface.</p>
+                    <p><strong>Highlights:</strong></p>
+                    <ul>
+                        <li>Switch effortlessly between 7 different Quran reader experiences.</li>
+                        <li>Optimized navigation and reading layouts for both mobile and desktop.</li>
+                        <li>Added directly under the Quran Reader and Quranic ecosystem tabs.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">24-10-2026 • Saturday</span>
+                    <h3>🌙 Noor Al Quran Launch</h3>
+                    <p><strong>Noor Al Quran</strong> has launched as our most advanced Quran reader application to date! Packed with cutting-edge typography, deep search capabilities, and immersive reciter features.</p>
+                    <p><strong>Highlights:</strong></p>
+                    <ul>
+                        <li>State-of-the-art advanced Quran reading layout and tools.</li>
+                        <li>Seamless integration into the Quran Reader tab.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">22-10-2026 • Thursday</span>
+                    <h3>✨ SyncBee Stable Update Released</h3>
+                    <p><strong>SyncBee</strong> has officially received its major stable release update today! Bringing robust performance enhancements, optimized file-sync protocols, and airtight security layers backed by UtiliX AI.</p>
+                    <p><strong>What's new in this stable release:</strong></p>
+                    <ul>
+                        <li>Production-grade socket architecture for zero-latency messaging.</li>
+                        <li>Optimized large file transfers with improved resume capabilities.</li>
+                        <li>Refined UI aesthetics fully integrated with MIR Code Studio design language.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">20-10-2026 • Tuesday</span>
+                    <h3>🚀 SyncBee Protocol & Performance Update</h3>
+                    <p><strong>SyncBee</strong> has received an advanced maintenance update today, optimizing real-time socket connections and file streaming throughput across all client devices.</p>
+                    <p><strong>Update Highlights:</strong></p>
+                    <ul>
+                        <li>Enhanced WebRTC file transfer stability for larger attachments.</li>
+                        <li>Reduced memory consumption during active background chat polling.</li>
+                        <li>Refined UI response states when communicating via UtiliX backend pipelines.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">18-10-2026 • Sunday</span>
+                    <h3>💬 SyncBee Chat & File Sending App Launched</h3>
+                    <p><strong>SyncBee</strong> is now live! Designed as a seamless chatting and file-sending application, SyncBee is supercharged by <strong>UtiliX</strong> to deliver lightning-fast peer messaging, intelligent file sharing, and automated context organization.</p>
+                    <p><strong>Key features of SyncBee:</strong></p>
+                    <ul>
+                        <li>Real-time chat and high-speed file transfers directly through web containers.</li>
+                        <li>UtiliX AI-powered message assistance and smart file search protocols.</li>
+                        <li>Integrated cleanly into the MIR Code Studio AI tab for rapid accessibility.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">13-October-2026 • Tuesday</span>
+                    <h3>📝 Smart Notes Now Powered by UtiliX AI</h3>
+                    <p><strong>Smart Notes</strong> has received a game-changing integration! It is now fully powered by <strong>UtiliX</strong>, bringing intelligent AI summarization, automatic categorization, and smart doubt clarification directly into your note-taking workflow.</p>
+                    <p><strong>What this integration brings:</strong></p>
+                    <ul>
+                        <li>Instant AI text correction, formatting, and smart summarization.</li>
+                        <li>Automated tagging and organization powered by UtiliX.</li>
+                        <li>Moved under the AI tab for quick, centralized ecosystem access.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">12-October-2026 • Monday</span>
+                    <h3>⚡ UtiliX AI Launch & Dedicated AI Tab Integration</h3>
+                    <p><strong>UtiliX</strong> has officially launched today as the best and most powerful AI for daily tasks and doubts! Alongside this release, we have introduced a dedicated <strong>AI tab</strong> in MIR Code Studio, housing both UtiliX and AyahAI for lightning-fast access.</p>
+                    <p><strong>What is new in this release:</strong></p>
+                    <ul>
+                        <li>Dedicated AI filtering category tab for all intelligent assistant modules.</li>
+                        <li>UtiliX integration for instant daily problem-solving, doubts clarification, and smart task management.</li>
+                        <li>Another top-secret next-generation AI model is currently queued and waiting for its upcoming launch.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">12-October-2026 • Monday</span>
+                    <h3>✨ MIR Code Studio Ecosystem Update</h3>
+                    <p><strong>MIR Code Studio</strong> has received a massive feature update today! As the central hub uniting all your custom progressive web applications, this update brings enhanced performance, streamlined navigation, and powerful customization tools directly to your fingertips.</p>
+                    <p><strong>What is new in this update:</strong></p>
+                    <ul>
+                        <li><strong>One UI 8.5 Style Navigation:</strong> Enjoy fluid tab-switching between Apps, News, and Settings with a modern floating dock.</li>
+                        <li><strong>Expanded Settings Panel:</strong> Over 10+ real configuration toggles for theme glassmorphism, caching, and offline data sync.</li>
+                        <li><strong>Unified Hub Architecture:</strong> Quick-launch shortcuts for 10+ core progressive web applications.</li>
+                        <li><strong>Performance Enhancements:</strong> Optimized service worker caching and instant local storage state retention.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">11-October-2026 • Sunday</span>
+                    <h3>🚀 New AIs Are Launching Soon - Be Ready!</h3>
+                    <p>New ais are launching soon. Be ready! We are scaling up our infrastructure to support multi-turn conversational agents across all studio modules.</p>
+                    <p><strong>Upcoming Highlights:</strong></p>
+                    <ul>
+                        <li>Advanced local LLM integration for ultra-low latency response times.</li>
+                        <li>Context-aware assistance tailored for developer workflows and general queries.</li>
+                        <li>Seamless cross-device synchronization of user preferences and bookmarks.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">10-October-2026 • Saturday</span>
+                    <h3>📖 Quran Reader+ NEW UPDATE</h3>
+                    <p>Quran Reader+ is updated to 6.7.1 with AyahAI. Updates and chanalog will be updated soon.</p>
+                    <p><strong>Key Improvements:</strong></p>
+                    <ul>
+                        <li>Direct integration of AyahAI for instant contextual Quranic insights.</li>
+                        <li>Enhanced audio reciter queue stability and memory management.</li>
+                        <li>Refined typography rendering for optimal readability on mobile PWA displays.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">09-October-2026 • Friday</span>
+                    <h3>🤖 AyahAI Launched</h3>
+                    <p>AyahAI launched as the flagship conversational intelligence engine built specifically for profound Islamic scholarship and general knowledge exploration.</p>
+                    <p><strong>Core Capabilities:</strong></p>
+                    <ul>
+                        <li>Unmatched accuracy in referencing Quranic verses and Hadith collections.</li>
+                        <li>Robust multilingual support for global accessibility.</li>
+                        <li>Lightning-fast PWA container loading without external latency overhead.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">08-October-2026 • Thursday</span>
+                    <h3>💡 First Ecosystem AI Preview</h3>
+                    <p>New and our first ai is going to launch. Developer previews indicate breakthrough performance in client-side inference speeds.</p>
+                    <p><strong>Development Roadmap:</strong></p>
+                    <ul>
+                        <li>Initial beta testing phase initiated for select core developers.</li>
+                        <li>Optimizing memory footprints for low-end mobile devices.</li>
+                    </ul>
+                </div>
+
+                <div class="news-card">
+                    <span class="news-date">06-October-2026 • Tuesday</span>
+                    <h3>🛠️ Early System Setup & Architecture Foundation</h3>
+                    <p>Core framework establishment and initial staging milestones achieved.</p>
+                    <p><strong>Milestone Notes:</strong></p>
+                    <ul>
+                        <li>Laying down the groundwork for responsive PWA grid structures.</li>
+                        <li>Configuring service worker caching pipelines.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SETTINGS TAB VIEW -->
+        <section id="settingsView" class="view-section">
+            <div class="settings-container">
+                <div class="setting-group-title">Navigation & Shortcuts</div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Milestone Banner Target File</span>
+                        <span class="setting-desc">File/page to open when tapping the milestone banner (e.g. index.html)</span>
+                    </div>
+                    <input type="text" class="setting-input" id="settingRedirectFile" value="index.html">
+                </div>
+
+                <div class="setting-group-title">Appearance & UI</div>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Dark Mode Theme</span>
+                        <span class="setting-desc">Toggle between futuristic dark and clean light aesthetics</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingThemeToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Glassmorphism Intensity</span>
+                        <span class="setting-desc">Adjust background blur and frosted glass opacity</span>
+                    </div>
+                    <select class="setting-select" id="settingBlur">
+                        <option value="high">High Blur</option>
+                        <option value="medium" selected>Balanced</option>
+                        <option value="low">Subtle</option>
+                        <option value="none">Disabled</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Card Hover Animations</span>
+                        <span class="setting-desc">Enable smooth 3D elevation effects on mouse hover</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingAnimations" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-group-title">App Behavior & Performance</div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Auto-Launch Last App</span>
+                        <span class="setting-desc">Directly open your most recently used PWA on startup</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingAutoLaunch">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">External Link Target</span>
+                        <span class="setting-desc">How apps open when launched from the dashboard</span>
+                    </div>
+                    <select class="setting-select" id="settingTarget">
+                        <option value="blank" selected>New Tab (_blank)</option>
+                        <option value="self">Current Window</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Aggressive Offline Caching</span>
+                        <span class="setting-desc">Keep offline app assets pinned in service worker memory</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingCache" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Haptic Feedback on Tap</span>
+                        <span class="setting-desc">Trigger vibration feedback on button and card clicks</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingHaptic" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-group-title">Data & Storage Management</div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Cloud Sync Favorites</span>
+                        <span class="setting-desc">Synchronize starred apps across devices securely</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="settingSync" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Export App Configuration</span>
+                        <span class="setting-desc">Download a backup JSON file of your current setup</span>
+                    </div>
+                    <button class="setting-btn" id="exportBtn">Export Data</button>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Clear Local Cache</span>
+                        <span class="setting-desc">Free up storage by wiping temporary cached data</span>
+                    </div>
+                    <button class="setting-btn" id="clearCacheBtn" style="background: rgba(239, 68, 68, 0.15); color: #ef4444; border-color: rgba(239, 68, 68, 0.3);">Clear Cache</button>
+                </div>
+
+                <div class="setting-group-title">About & System Info</div>
+
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <span class="setting-name">Studio Version</span>
+                        <span class="setting-desc">MIR Code Studio PWA v3.7.0 (Classic Edition) • Made by Mubashir</span>
+                    </div>
+                    <span style="font-size: 0.85rem; color: var(--accent-color); font-weight: 700;">Up to date</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- One UI 8.5 Style Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" data-tab="apps">
+            <span class="nav-icon">📱</span>
+            <span>Apps</span>
+        </button>
+        <button class="nav-item" data-tab="news">
+            <span class="nav-icon">📰</span>
+            <span>News</span>
+        </button>
+        <button class="nav-item" data-tab="settings">
+            <span class="nav-icon">⚙️</span>
+            <span>Settings</span>
+        </button>
+    </nav>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Action completed successfully</div>
+
+    <script>
+        // Default Apps Data (10 Successful Apps)
+        const defaultApps = [
+            {
+                id: 'syncbee',
+                title: 'SYNCBEE',
+                url: 'https://supermanmubashir-png.github.io/SyncBee',
+                icon: '💬',
+                description: 'Chatting and file sending app powered by UtiliX',
+                categories: ['ai', 'social'],
+                favorite: false
+            },
+            {
+                id: 'utilix',
+                title: 'UTILIX',
+                url: 'https://supermanmubashir-png.github.io/UtiliX',
+                icon: '⚡',
+                description: 'Best and most powerful ai for daily tasks and doubts',
+                categories: ['ai'],
+                favorite: false
+            },
+            {
+                id: 'ayah-ai',
+                title: 'AYAH AI',
+                url: 'https://supermanmubashir-png.github.io/AyahAI/',
+                icon: '🤖',
+                description: 'Most powerful AI in islamic and general topics',
+                categories: ['ai', 'quranic'],
+                favorite: false
+            },
+            {
+                id: 'quran-reader-plus',
+                title: 'QURAN READER+',
+                url: 'https://supermanmubashir-png.github.io/Quraan-Pro',
+                icon: '📖',
+                description: 'Digital Quran reading experience powered by AyahAI',
+                categories: ['ai', 'quranic', 'quran-reader'],
+                favorite: false
+            },
+            {
+                id: 'quran-hub',
+                title: 'QURAN HUB',
+                url: 'https://supermanmubashir-png.github.io/QuraanHub',
+                icon: '🕋',
+                description: '7 different Quran reader apps experience',
+                categories: ['quranic', 'quran-reader'],
+                favorite: false
+            },
+            {
+                id: 'noor-al-quran',
+                title: 'NOOR AL QURAN',
+                url: 'https://supermanmubashir-png.github.io/NoorAlQuraan/',
+                icon: '🌙',
+                description: 'Most advanced Quran reader',
+                categories: ['quranic', 'quran-reader'],
+                favorite: false
+            },
+            {
+                id: 'smart-notes',
+                title: 'SMART NOTES',
+                url: 'https://supermanmubashir-png.github.io/SmartNotes',
+                icon: '📝',
+                description: 'Quick and organized note-taking tool powered by UtiliX AI',
+                categories: ['ai'],
+                favorite: false
+            },
+            {
+                id: 'windows-12',
+                title: 'WINDOWS 12',
+                url: 'https://supermanmubashir-png.github.io/Windows12/',
+                icon: '💻',
+                description: 'Futuristic desktop OS web interface',
+                categories: ['os'],
+                favorite: false
+            },
+            {
+                id: 'speedometer',
+                title: 'SPEEDOMETER',
+                url: 'https://supermanmubashir-png.github.io/Speedometer/',
+                icon: '🏎️',
+                description: 'Real-time speed and travel tracking tool',
+                categories: ['speedometer'],
+                favorite: false
+            },
+            {
+                id: 'speedometer-plus',
+                title: 'SPEEDOMETER+',
+                url: 'https://supermanmubashir-png.github.io/SpeedometerPlus/',
+                icon: '🚀',
+                description: 'Advanced real-time speed and travel tracking tool',
+                categories: ['speedometer'],
+                favorite: false
+            }
+        ];
+
+        // State Management with automatic app merging
+        let savedApps = JSON.parse(localStorage.getItem('mir_code_studio_apps')) || [];
+        let apps = defaultApps.map(defApp => {
+            const existing = savedApps.find(s => s.id === defApp.id || (defApp.id === 'syncbee' && s.id === 'connectly') || (defApp.id === 'quran-reader-plus' && s.id === 'quraan-pro'));
+            return existing ? { ...defApp, favorite: existing.favorite, categories: defApp.categories } : defApp;
+        });
+        
+        savedApps.forEach(s => {
+            if (s.id === 'connectly') s.id = 'syncbee';
+            if (s.id === 'quraan-pro') s.id = 'quran-reader-plus';
+            if (!apps.some(a => a.id === s.id)) {
+                apps.push(s);
+            }
+        });
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+
+        // DOM Elements
+        const appGrid = document.getElementById('appGrid');
+        const searchInput = document.getElementById('searchInput');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const themeToggle = document.getElementById('themeToggle');
+        const settingThemeToggle = document.getElementById('settingThemeToggle');
+        const settingRedirectFile = document.getElementById('settingRedirectFile');
+        const milestoneBanner = document.getElementById('milestoneBanner');
+        const toast = document.getElementById('toast');
+        const headerTitle = document.getElementById('headerTitle');
+        const controlsBar = document.getElementById('controlsBar');
+
+        // Milestone Banner Redirect Logic & Preference Persistence
+        const savedRedirectFile = localStorage.getItem('mir_code_studio_redirect_file') || 'index.html';
+        settingRedirectFile.value = savedRedirectFile;
+
+        settingRedirectFile.addEventListener('input', (e) => {
+            const val = e.target.value.trim() || 'index.html';
+            localStorage.setItem('mir_code_studio_redirect_file', val);
+        });
+
+        milestoneBanner.addEventListener('click', () => {
+            const targetFile = localStorage.getItem('mir_code_studio_redirect_file') || 'index.html';
+            showToast(`Redirecting to ${targetFile}...`);
+            setTimeout(() => {
+                window.location.href = targetFile;
+            }, 600);
+        });
+
+        // Tab Navigation Logic (One UI 8.5 style)
+        const navItems = document.querySelectorAll('.nav-item');
+        const views = {
+            apps: document.getElementById('appsView'),
+            news: document.getElementById('newsView'),
+            settings: document.getElementById('settingsView')
+        };
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navItems.forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+
+                const tabName = item.getAttribute('data-tab');
+                Object.values(views).forEach(v => v.classList.remove('active'));
+                views[tabName].classList.add('active');
+
+                // Update Header & Controls visibility based on active tab
+                if (tabName === 'apps') {
+                    headerTitle.textContent = 'MIR Code Studio';
+                    controlsBar.style.display = 'flex';
+                } else if (tabName === 'news') {
+                    headerTitle.textContent = 'Studio News & Updates';
+                    controlsBar.style.display = 'none';
+                } else if (tabName === 'settings') {
+                    headerTitle.textContent = 'Studio Settings';
+                    controlsBar.style.display = 'none';
+                }
+
+                showToast(`Switched to ${tabName.toUpperCase()}`);
+            });
+        });
+
+        // Theme Initializer
+        const savedTheme = localStorage.getItem('mir_code_studio_theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        settingThemeToggle.checked = savedTheme === 'dark';
+
+        function toggleAppTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('mir_code_studio_theme', newTheme);
+            settingThemeToggle.checked = newTheme === 'dark';
+            showToast(`Switched to ${newTheme} mode`);
+        }
+
+        themeToggle.addEventListener('click', toggleAppTheme);
+        settingThemeToggle.addEventListener('change', toggleAppTheme);
+
+        // Render Apps
+        function renderApps() {
+            appGrid.innerHTML = '';
+
+            let filtered = apps.filter(app => {
+                const matchesSearch = app.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      app.description.toLowerCase().includes(searchQuery.toLowerCase());
+                
+                let matchesCategory = true;
+                if (currentFilter === 'favorites') {
+                    matchesCategory = app.favorite;
+                } else if (currentFilter !== 'all') {
+                    const cats = app.categories || [app.category];
+                    matchesCategory = cats.includes(currentFilter);
+                }
+                return matchesSearch && matchesCategory;
+            });
+
+            if (filtered.length === 0) {
+                appGrid.innerHTML = `
+                    <div class="empty-state">
+                        <span>📭</span>
+                        <p>No applications found</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(app => {
+                const card = document.createElement('a');
+                card.href = app.url;
+                card.target = '_blank';
+                card.className = 'pwa-card';
+                const catBadge = app.categories ? app.categories.join(' • ') : (app.category || 'app');
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="icon-wrapper">${app.icon}</div>
+                        <div class="card-actions" onclick="event.preventDefault();">
+                            <button class="action-icon-btn favorite ${app.favorite ? 'active' : ''}" onclick="toggleFavorite('${app.id}')" title="Favorite">
+                                ${app.favorite ? '⭐' : '☆'}
+                            </button>
+                            <button class="action-icon-btn" onclick="shareApp('${app.url}', '${app.title}')" title="Share App">
+                                🔗
+                            </button>
+                        </div>
+                    </div>
+                    <div class="label">${app.title}</div>
+                    <div class="description">${app.description}</div>
+                    <div class="card-footer">
+                        <span class="badge">${catBadge}</span>
+                        <span class="launch-hint">Launch ↗</span>
+                    </div>
+                `;
+                appGrid.appendChild(card);
+            });
+        }
+
+        // Search Listener
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderApps();
+        });
+
+        // Category Filter Listeners
+        categoryFilter.addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-chip')) {
+                document.querySelectorAll('.filter-chip').forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+                currentFilter = e.target.getAttribute('data-category');
+                renderApps();
+            }
+        });
+
+        // Favorite Functionality
+        window.toggleFavorite = function(id) {
+            apps = apps.map(app => app.id === id ? { ...app, favorite: !app.favorite } : app);
+            saveAndRender();
+            showToast('Updated favorites');
+        };
+
+        // Share Functionality
+        window.shareApp = function(url, title) {
+            if (navigator.share) {
+                navigator.share({ title: title, url: url }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(url);
+                showToast('App link copied to clipboard!');
+            }
+        };
+
+        // Settings Buttons Actions
+        document.getElementById('exportBtn').addEventListener('click', () => {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(apps, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", "mir_code_studio_backup.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            showToast('Configuration exported successfully!');
+        });
+
+        document.getElementById('clearCacheBtn').addEventListener('click', () => {
+            if('caches' in window) {
+                caches.keys().then(names => {
+                    names.forEach(name => caches.delete(name));
+                });
+            }
+            showToast('Local application cache cleared!');
+        });
+
+        function saveAndRender() {
+            localStorage.setItem('mir_code_studio_apps', JSON.stringify(apps));
+            renderApps();
+        }
+
+        // Toast Helper
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        // Service Worker Registration for PWA capability
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(() => {});
+            });
+        }
+
+        // Initial render
+        renderApps();
+    </script>
+</body>
+</html>
